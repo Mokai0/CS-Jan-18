@@ -21,7 +21,7 @@ namespace testapp
         public double   MarkUp;
         //This should be the 1 + a percentage, 1.39 is a 39% mark up.
 
-        Invoice(string brand, string product, int size, int received, int cost, double markup)
+        public Invoice(string brand, string product, int size, int received, int cost, double markup)
         {
             Brand = brand;
             Product = product;
