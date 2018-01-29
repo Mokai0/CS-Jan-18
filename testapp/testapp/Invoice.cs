@@ -12,8 +12,8 @@ namespace testapp
         public string   Product;
         public int      Size;
         //These three variables will be combined to construct the name of the item.
-        public int      Recieved;
-        //This variable will represent the quantity of said item that has been recieved, "how many cases".
+        public int      Received;
+        //This variable will represent the quantity of said item that has been received, "how many cases".
         public int      Cost;
         //Cost per case.
         //public DateTime ExpDate;
@@ -21,12 +21,12 @@ namespace testapp
         public double   MarkUp;
         //This should be the 1 + a percentage, 1.39 is a 39% mark up.
 
-        Invoice(string brand, string product, int size, int recieved, int cost, double markup)
+        Invoice(string brand, string product, int size, int received, int cost, double markup)
         {
             Brand = brand;
             Product = product;
             Size = size;
-            Recieved = recieved;
+            Received = received;
             Cost = cost;
             MarkUp = markup;
         }
