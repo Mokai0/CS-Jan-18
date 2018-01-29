@@ -8,5 +8,6 @@ namespace testapp
 {
     class History
     {
+        //Use 'get' and 'set' here to access the array of Histories while preserving their integrity.
     }
 }
