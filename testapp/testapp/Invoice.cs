@@ -8,6 +8,8 @@ namespace testapp
 {
     class Invoice
     {
+        //adding a 'readonly' tag would lock the information in place so as not to be changed after it has been created but I think I'll keep it flexible for now.
+        //example 'public readonly int Size' would make sense but sometimes manufacturers will adjust the size a bit to keep costs down.
         public string   Brand;
         public string   Product;
         public int      Size;
