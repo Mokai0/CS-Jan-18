@@ -32,9 +32,13 @@ namespace testapp
             Brand = brand;
             Product = product;
             Size = size;
+            //Above 3 will comprise the "Name"; haven't decided on whether I'll concatonate them or keep them seperate
             Received = received;
+            //Quantity so an int initially but I'm thinking a double considering the times we've received half cases
             Cost = cost;
+            //This will be a double
             MarkUp = markup;
+            //Also a double
         }
     }
 }

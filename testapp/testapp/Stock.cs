@@ -18,8 +18,9 @@ namespace testapp
 
         //Will probably use a List for this, not sure yet.
         //Also look into IEnumerable.
-        //Think about using 'HashSet's as they allow you the option of retrieving a hash code for a specific property:
+        //Think about using 'HashSet's as they allow you the option of retrieving a hash code [GetHashCode] for a specific property:
         //   An example would be the combined string for a item's Name being "Brand + Product + Size" would produce a unique hash code for each and every item.
         //   This inturn could be useful for tracking down that specific item once the new Invoice has been completed so as to update the new quantity in Stock.
+        //Also considering a 'SortedSet' as a possible storage solution.
     }
 }
