@@ -15,5 +15,8 @@ namespace testapp
         //}
 
         //Use 'get' and 'set' here to retrieve the current stockpile of inventory as well as selectively update it.
+
+        //Will probably use a List for this, not sure yet.
+        //Also look into IEnumerable.
     }
 }
