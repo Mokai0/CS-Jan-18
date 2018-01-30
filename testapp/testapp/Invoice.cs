@@ -15,18 +15,18 @@ namespace testapp
         //example 'public readonly int Size' would make sense but sometimes manufacturers will adjust the size a bit to keep costs down.
         public string   Brand;
         public string   Product;
-        public int      Size;
+        public double      Size;
         //These three variables will be combined to construct the name of the item.
-        public int      Received;
+        public double      Received;
         //This variable will represent the quantity of said item that has been received, "how many cases".
-        public int      Cost;
+        public double      Cost;
         //Cost per case.
         //public DateTime ExpDate;
         //When the new product will expire - this variable object might give me trouble later so I'll omit it for now.
         public double   MarkUp;
         //This should be the 1 + a percentage, 1.39 is a 39% mark up.
 
-        public Invoice(string brand, string product, int size, int received, int cost, double markup)
+        public Invoice(string brand, string product, double size, double received, double cost, double markup)
             //The name of this constructor might chang to 'Item' for readablity and contextual congruity.
         {
             Brand = brand;
