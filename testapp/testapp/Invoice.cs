@@ -40,5 +40,12 @@ namespace testapp
             //MarkUp = markup;
             //Also a double
         }
+
+        public Invoice(string product, double received, double cost)
+        {
+            Product = product;
+            Cost = cost;
+            Received = received;
+        }
     }
 }

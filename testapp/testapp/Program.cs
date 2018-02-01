@@ -12,8 +12,9 @@ namespace testapp
 		{
 			Console.WriteLine("What do you want to do?");
 
-			var Menu = "1] See current Stock \n2] Create a new Invoice" + Environment.NewLine + "3] Check invoice History";
-            //In the above line of code "\n" and "Environment.NewLine" serve the same function however while \n is much shorter Environment.NewLine is supposedly more context correct/savvy. 
+            var Menu = "1] See current Stock \n2] Create a new Invoice" + Environment.NewLine; // + "3] Check invoice History";
+                                                                                               //In the above line of code "\n" and "Environment.NewLine" serve the same function however while \n is much shorter Environment.NewLine is supposedly more context correct/savvy. 
+                                                                                               //Need to focus on a Minimum Viable Product for now, can add History later.
 
             //Console.WriteLine(Menu);
 
@@ -34,44 +35,50 @@ namespace testapp
             //         {
             //             Console.WriteLine("You didn't pick a valid option");
             //         }
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            //Invoice invoice = new Invoice("Ziyad", "Hummus", 28, 3, 18.60, 1.39);
-            //Console.WriteLine(invoice.ToString());
-            //Console.WriteLine(invoice.Brand);
-            Console.WriteLine("Create an item? Type yes to continue; type anything else to quit.");
 
-            while (true)
-            {
-                string Answer = Console.ReadLine().ToLower();
+            //Console.WriteLine("Create an item? Type yes to continue; type anything else to quit.");
 
-                if(Answer == "yes")
-                {
-                    Console.Write("Enter a Brand: ");
-                    string brand = Console.ReadLine().ToUpper();
-                    Console.Write("What is the product called: ");
-                    string product = Console.ReadLine().ToUpper();
-                    Console.Write("What is the size (in grams or mL): ");
-                    double size = double.Parse(Console.ReadLine());
-                    Console.Write("How many cases came in: ");
-                    double received = double.Parse(Console.ReadLine());
-                    Console.Write("What's the cost of a case: ");
-                    double cost = double.Parse(Console.ReadLine());
+            //while (true)
+            //{
+            //    string Answer = Console.ReadLine().ToLower();
 
-                    Console.WriteLine("Here's your item:");
-                    Invoice item = new Invoice(brand, product, size, received, cost);
-                    Console.WriteLine(item.Brand + " " 
-                                    + item.Product + " "
-                                    + item.Size + " "
-                                    + item.Received + " "
-                                    + "$" + item.Cost);
+            //    if(Answer == "yes")
+            //    {
+            //        Console.Write("Enter a Brand: ");
+            //        string brand = Console.ReadLine().ToUpper();
+            //        Console.Write("What is the product called: ");
+            //        string product = Console.ReadLine().ToUpper();
+            //        Console.Write("What is the size (in grams or mL): ");
+            //        double size = double.Parse(Console.ReadLine());
+            //        Console.Write("How many cases came in: ");
+            //        double received = double.Parse(Console.ReadLine());
+            //        Console.Write("What's the cost of a case: ");
+            //        double cost = double.Parse(Console.ReadLine());
 
-                }
-                else
-                {
-                    break;
-                }
-                Console.WriteLine("Create another item?");
-            }
+            //        Console.WriteLine("Here's your item:");
+            //        Invoice item = new Invoice(brand, product, size, received, cost);
+            //        Console.WriteLine(item.Brand + " " 
+            //                        + item.Product + " "
+            //                        + item.Size + " "
+            //                        + item.Received + " "
+            //                        + "$" + item.Cost);
+
+            //    }
+            //    else
+            //    {
+            //        break;
+            //    }
+            //    Console.WriteLine("Create another item?");
+            //}
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            Invoice item1 = new Invoice("Hummus", 3, 18.60);
+            Invoice item2 = new Invoice("Foul", 2, 24.00);
+            Invoice item3 = new Invoice("Baba Ganoush", 1, 26.50);
+            Console.WriteLine(this.Product + " " + this.Received + " cases $" + this.Cost);
+
 
             Console.Write("Goodbye");
             Console.ReadKey();
