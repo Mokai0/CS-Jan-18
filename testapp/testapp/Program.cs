@@ -35,8 +35,19 @@ namespace testapp
             //             Console.WriteLine("You didn't pick a valid option");
             //         }
 
-            Invoice invoice = new Invoice("Ziyad", "Hummus", 28, 3, 18.60, 1.39);
-            Console.WriteLine(invoice);
+            //Invoice invoice = new Invoice("Ziyad", "Hummus", 28, 3, 18.60, 1.39);
+            //Console.WriteLine(invoice.ToString());
+            //Console.WriteLine(invoice.Brand);
+
+            while (true)
+            {
+                string exit = Console.ReadLine().ToLower();
+                if(exit == "quit")
+                {
+                    break;
+                }
+            }
+
 
             Console.ReadKey();
 		}

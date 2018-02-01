@@ -13,17 +13,17 @@ namespace testapp
 
         //adding a 'readonly' tag would lock the information in place so as not to be changed after it has been created but I think I'll keep it flexible for now.
         //example 'public readonly int Size' would make sense but sometimes manufacturers will adjust the size a bit to keep costs down.
-        public string   Brand;
-        public string   Product;
-        public double      Size;
+        public string   Brand { get; set; }
+        public string   Product { get; set; }
+        public double   Size { get; set; }
         //These three variables will be combined to construct the name of the item.
-        public double      Received;
+        public double   Received { get; set; }
         //This variable will represent the quantity of said item that has been received, "how many cases".
-        public double      Cost;
+        public double   Cost { get; set; }
         //Cost per case.
-        //public DateTime ExpDate;
+        //public DateTime ExpDate { get; set; }
         //When the new product will expire - this variable object might give me trouble later so I'll omit it for now.
-        public double   MarkUp;
+        public double   MarkUp { get; set; }
         //This should be the 1 + a percentage, 1.39 is a 39% mark up.
 
         public Invoice(string brand, string product, double size, double received, double cost, double markup)
