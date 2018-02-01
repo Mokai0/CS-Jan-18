@@ -38,14 +38,15 @@ namespace testapp
             //Invoice invoice = new Invoice("Ziyad", "Hummus", 28, 3, 18.60, 1.39);
             //Console.WriteLine(invoice.ToString());
             //Console.WriteLine(invoice.Brand);
+            Console.WriteLine("Type quit to exit.");
+            Console.WriteLine("Create an item?");
 
             while (true)
             {
-                Console.WriteLine("Type quit to exit.");
-                Console.WriteLine("Create an item?");
                 string Answer = Console.ReadLine().ToLower();
 
-                if(Answer == "quit")
+                if(Answer == "quit" || "no")
+                    //Why doesn't this work??
                 {
                     break;
                 }
@@ -57,6 +58,7 @@ namespace testapp
                     Console.Write("How many cases came in: "); Console.ReadLine();
                     Console.Write("What's the cost of a case: "); Console.ReadLine();
                 }
+                Console.WriteLine("Create another item?");
             }
 
 
