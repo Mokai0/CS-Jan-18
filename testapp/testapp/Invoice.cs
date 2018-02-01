@@ -26,7 +26,7 @@ namespace testapp
         public double   MarkUp { get; set; }
         //This should be the 1 + a percentage, 1.39 is a 39% mark up.
 
-        public Invoice(string brand, string product, double size, double received, double cost, double markup)
+        public Invoice(string brand, string product, double size, double received, double cost)   //, double markup)
             //The name of this constructor might chang to 'Item' for readablity and contextual congruity.
         {
             Brand = brand;
@@ -37,7 +37,7 @@ namespace testapp
             //Quantity so an int initially but I'm thinking a double considering the times we've received half cases
             Cost = cost;
             //This will be a double
-            MarkUp = markup;
+            //MarkUp = markup;
             //Also a double
         }
     }

@@ -38,30 +38,42 @@ namespace testapp
             //Invoice invoice = new Invoice("Ziyad", "Hummus", 28, 3, 18.60, 1.39);
             //Console.WriteLine(invoice.ToString());
             //Console.WriteLine(invoice.Brand);
-            Console.WriteLine("Type quit to exit.");
-            Console.WriteLine("Create an item?");
+            Console.WriteLine("Create an item? Type yes to continue; type anything else to quit.");
 
             while (true)
             {
                 string Answer = Console.ReadLine().ToLower();
 
-                if(Answer == "quit" || "no")
-                    //Why doesn't this work??
+                if(Answer == "yes")
                 {
-                    break;
+                    Console.Write("Enter a Brand: ");
+                    string brand = Console.ReadLine().ToUpper();
+                    Console.Write("What is the product called: ");
+                    string product = Console.ReadLine().ToUpper();
+                    Console.Write("What is the size (in grams or mL): ");
+                    double size = double.Parse(Console.ReadLine());
+                    Console.Write("How many cases came in: ");
+                    double received = double.Parse(Console.ReadLine());
+                    Console.Write("What's the cost of a case: ");
+                    double cost = double.Parse(Console.ReadLine());
+
+                    Console.WriteLine("Here's your item:");
+                    Invoice item = new Invoice(brand, product, size, received, cost);
+                    Console.WriteLine(item.Brand + " " 
+                                    + item.Product + " "
+                                    + item.Size + " "
+                                    + item.Received + " "
+                                    + "$" + item.Cost);
+
                 }
                 else
                 {
-                    Console.Write("Enter a Brand: "); Console.ReadLine();
-                    Console.Write("What is the product called: "); Console.ReadLine();
-                    Console.Write("What is the size: "); Console.ReadLine();
-                    Console.Write("How many cases came in: "); Console.ReadLine();
-                    Console.Write("What's the cost of a case: "); Console.ReadLine();
+                    break;
                 }
                 Console.WriteLine("Create another item?");
             }
 
-
+            Console.Write("Goodbye");
             Console.ReadKey();
 		}
 	}
