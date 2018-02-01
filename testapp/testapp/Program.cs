@@ -41,10 +41,21 @@ namespace testapp
 
             while (true)
             {
-                string exit = Console.ReadLine().ToLower();
-                if(exit == "quit")
+                Console.WriteLine("Type quit to exit.");
+                Console.WriteLine("Create an item?");
+                string Answer = Console.ReadLine().ToLower();
+
+                if(Answer == "quit")
                 {
                     break;
+                }
+                else
+                {
+                    Console.Write("Enter a Brand: "); Console.ReadLine();
+                    Console.Write("What is the product called: "); Console.ReadLine();
+                    Console.Write("What is the size: "); Console.ReadLine();
+                    Console.Write("How many cases came in: "); Console.ReadLine();
+                    Console.Write("What's the cost of a case: "); Console.ReadLine();
                 }
             }
 
