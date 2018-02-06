@@ -44,9 +44,19 @@ namespace Treehouse.FitnessFrog.Controllers
             return View();
         }
 
-        [ActionName("Add"), HttpPost] //This is called an 'attribute' and it allows you to associate multiple methods to the same method call
-        public ActionResult AddPost()
+        [HttpPost]
+        public ActionResult Add(string date, string activityId, string duration, string intensity, string exclude, string notes)
         {
+            //string date = Request.Form["Date"];
+            //This line of code will catch the info passed into the 'Date' form field and would have to be repeated for each and every form field that we'd want to retrieve. Conversly the above added parameters allow both the ability of catching the desired POST data as well as making the this method's signiture unique removing the need for an attribute tag to associate this method.
+
+            ViewBag.Date = date;
+            ViewBag.ActivityId = activityId;
+            ViewBag.Duration = duration;
+            ViewBag.Intensity = intensity;
+            ViewBag.Exclude = exclude;
+            ViewBag.Notes = notes;
+
             return View();
         }
 
