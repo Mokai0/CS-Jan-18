@@ -47,12 +47,14 @@ namespace Treehouse.FitnessFrog.Controllers
         [HttpPost]
         public ActionResult Add(DateTime? date, int? activityId, double? duration, Entry.IntensityLevel? intensity, bool? exclude, string notes)
         {
-            ViewBag.Date = ModelState["Date"].Value.AttemptedValue;
-            ViewBag.ActivityId = ModelState["ActivityId"].Value.AttemptedValue;
-            ViewBag.Duration = ModelState["Duration"].Value.AttemptedValue;
-            ViewBag.Intensity = ModelState["Intensity"].Value.AttemptedValue;
-            ViewBag.Exclude = ModelState["Exclude"].Value.AttemptedValue;
-            ViewBag.Notes = ModelState["Notes"].Value.AttemptedValue;
+            //ViewBag.Date = ModelState["Date"].Value.AttemptedValue;
+            //ViewBag.ActivityId = ModelState["ActivityId"].Value.AttemptedValue;
+            //ViewBag.Duration = ModelState["Duration"].Value.AttemptedValue;
+            //ViewBag.Intensity = ModelState["Intensity"].Value.AttemptedValue;
+            //ViewBag.Exclude = ModelState["Exclude"].Value.AttemptedValue;
+            //ViewBag.Notes = ModelState["Notes"].Value.AttemptedValue;
+
+            //All this code is now unneeded since we've changed the markup within the Add.cshtml to use Html Helper Methods render the form field and text area elements. This allows the implicit use of ModelState to match and retain the information typed by the parameters within the Add Post method call.
 
             return View();
         }
