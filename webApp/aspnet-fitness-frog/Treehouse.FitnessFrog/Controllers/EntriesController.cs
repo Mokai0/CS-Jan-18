@@ -44,6 +44,12 @@ namespace Treehouse.FitnessFrog.Controllers
             return View();
         }
 
+        [ActionName("Add"), HttpPost] //This is called an 'attribute' and it allows you to associate multiple methods to the same method call
+        public ActionResult AddPost()
+        {
+            return View();
+        }
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
