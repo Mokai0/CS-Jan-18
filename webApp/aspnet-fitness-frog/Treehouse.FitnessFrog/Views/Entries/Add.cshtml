@@ -1,4 +1,6 @@
-﻿
+﻿@model Treehouse.FitnessFrog.Models.Entry
+    @* Making the view strongly typed allows the entry model instance being passed through the controller to be accessible to the 'views' model property *@
+
 @{
     ViewBag.Title = "Add Entry";
 }
@@ -12,31 +14,38 @@
         <div class="col-md-6">
 
             <div class="form-group">
-                @Html.Label("Date", new { @class = "control-label" })
-                @Html.TextBox("Date", null, new { @class = "form-control" })
-                @* The above markup replaces the below as a method for automatically populating the different fields using Bootstrap and preventing the submission without all the necessary forms filled in. Old markup below*@
-                @*<label for="Date" class="control-label">Date</label>
-                <input type="text" id="Date" name="Date" class="form-control" value="@ViewBag.Date" />*@
+                @Html.LabelFor(m => m.Date, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Date, "{0:d}", new { @class = "form-control" })
+                @* Remember '=>' is known as a lamda and it functions as an anonymous method.
+        The 'm' is a method parameter that is a reference to the view's model property.
+        The '=>' operator is the transition from the parameter list to the method body.
+        The 'm.Date' is the property in our model that we're returning from our anonymous method.*@
+                @* @{
+            var formattedDate = String.Format("{0:d}", Model.Date);
+        }
+        The above is an example of how to format a DateTime value - 'd' stands for the shortened version and 'D' for the elongated version.
+        Check out this link for more:
+        https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-date-and-time-format-strings*@
             </div>
 
             <div class="form-group">
-                @Html.Label("ActivityId", new { @class = "control-label" })
-                @Html.TextBox("ActivityId", null, new { @class = "form-control" })
+                @Html.LabelFor(m => m.ActivityId, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.ActivityId, new { @class = "form-control" })
             </div>
 
             <div class="form-group">
-                @Html.Label("Duration", new { @class = "control-label" })
-                @Html.TextBox("Duration", null, new { @class = "form-control" })
+                @Html.LabelFor(m => m.Duration, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Duration, new { @class = "form-control" })
             </div>
 
             <div class="form-group">
-                @Html.Label("Intensity", new { @class = "control-label" })
-                @Html.TextBox("Intensity", null, new { @class = "form-control" })
+                @Html.LabelFor(m => m.Intensity, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Intensity, new { @class = "form-control" })
             </div>
 
             <div class="form-group">
-                @Html.Label("Exclude", new { @class = "control-label" })
-                @Html.TextBox("Exclude", null, new { @class = "form-control" })
+                @Html.LabelFor(m => m.Exclude, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Exclude, new { @class = "form-control" })
             </div>
 
         </div>
@@ -44,8 +53,8 @@
         <div class="col-md-6">
 
             <div class="form-group">
-                @Html.Label("Notes", new { @class = "control-label" })
-                @Html.TextArea("Notes", null, 14, 20, new { @class = "form-control" })
+                @Html.LabelFor(m => m.Notes, new { @class = "control-label" })
+                @Html.TextAreaFor(m => m.Notes, 14, 20, new { @class = "form-control" })
             </div>
 
         </div>

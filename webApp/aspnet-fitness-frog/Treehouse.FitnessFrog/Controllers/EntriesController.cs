@@ -41,22 +41,25 @@ namespace Treehouse.FitnessFrog.Controllers
 
         public ActionResult Add()
         {
-            return View();
+            var entry = new Entry()
+            {
+                Date = DateTime.Today
+            };
+
+            return View(entry);
         }
 
         [HttpPost]
-        public ActionResult Add(DateTime? date, int? activityId, double? duration, Entry.IntensityLevel? intensity, bool? exclude, string notes)
+        public ActionResult Add(Entry entry) //This will cause MVC's model binder to recognize our parameter as an instance of a class or reference type and will attempt to binde the incoming form field values to its properties.
         {
-            //ViewBag.Date = ModelState["Date"].Value.AttemptedValue;
-            //ViewBag.ActivityId = ModelState["ActivityId"].Value.AttemptedValue;
-            //ViewBag.Duration = ModelState["Duration"].Value.AttemptedValue;
-            //ViewBag.Intensity = ModelState["Intensity"].Value.AttemptedValue;
-            //ViewBag.Exclude = ModelState["Exclude"].Value.AttemptedValue;
-            //ViewBag.Notes = ModelState["Notes"].Value.AttemptedValue;
+            if (ModelState.IsValid)
+            {
+                _entriesRepository.AddEntry(entry);
 
-            //All this code is now unneeded since we've changed the markup within the Add.cshtml to use Html Helper Methods render the form field and text area elements. This allows the implicit use of ModelState to match and retain the information typed by the parameters within the Add Post method call.
+                //TODO display the list page
+            }
 
-            return View();
+            return View(entry);
         }
 
         public ActionResult Edit(int? id)
