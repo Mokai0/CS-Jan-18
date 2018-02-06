@@ -46,11 +46,13 @@ namespace Treehouse.FitnessFrog.Controllers
                 Date = DateTime.Today
             };
 
+            ViewBag.ActivitiesSelectListItems = new SelectList(Data.Data.Activities, "Id", "Name");
+
             return View(entry);
         }
 
         [HttpPost]
-        public ActionResult Add(Entry entry) //This will cause MVC's model binder to recognize our parameter as an instance of a class or reference type and will attempt to binde the incoming form field values to its properties.
+        public ActionResult Add(Entry entry)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +60,8 @@ namespace Treehouse.FitnessFrog.Controllers
 
                 return RedirectToAction("Index");
             }
+
+            ViewBag.ActivitiesSelectListItems = new SelectList(Data.Data.Activities, "Id", "Name");
 
             return View(entry);
         }

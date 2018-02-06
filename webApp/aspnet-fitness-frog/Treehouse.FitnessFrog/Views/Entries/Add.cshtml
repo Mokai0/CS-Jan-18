@@ -1,5 +1,4 @@
 ﻿@model Treehouse.FitnessFrog.Models.Entry
-    @* Making the view strongly typed allows the entry model instance being passed through the controller to be accessible to the 'views' model property *@
 
 @{
     ViewBag.Title = "Add Entry";
@@ -16,21 +15,12 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.Date, new { @class = "control-label" })
                 @Html.TextBoxFor(m => m.Date, "{0:d}", new { @class = "form-control" })
-                @* Remember '=>' is known as a lamda and it functions as an anonymous method.
-        The 'm' is a method parameter that is a reference to the view's model property.
-        The '=>' operator is the transition from the parameter list to the method body.
-        The 'm.Date' is the property in our model that we're returning from our anonymous method.*@
-                @* @{
-            var formattedDate = String.Format("{0:d}", Model.Date);
-        }
-        The above is an example of how to format a DateTime value - 'd' stands for the shortened version and 'D' for the elongated version.
-        Check out this link for more:
-        https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-date-and-time-format-strings*@
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(m => m.ActivityId, new { @class = "control-label" })
-                @Html.TextBoxFor(m => m.ActivityId, new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.ActivityId, (SelectList)ViewBag.ActivitiesSelectListItems, "What did you do?", new { @class = "form-control" })
+                @* Needed to explicitly cast the 'ViewBag' value here because we are calling a 'SelectList item' and ViewBag is a dynamic value *@
             </div>
 
             <div class="form-group">
