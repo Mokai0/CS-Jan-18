@@ -47,16 +47,12 @@ namespace Treehouse.FitnessFrog.Controllers
         [HttpPost]
         public ActionResult Add(DateTime? date, int? activityId, double? duration, Entry.IntensityLevel? intensity, bool? exclude, string notes)
         {
-            //DateTime dateValue;
-            //DateTime.TryParse(date, out dateValue);
-            //The above code would convert the incoming data into the correct datatype but thankfully C# allows an attempt at auto conversion if you just type the values themselves within the method call's parameters
-
-            ViewBag.Date = date;
-            ViewBag.ActivityId = activityId;
-            ViewBag.Duration = duration;
-            ViewBag.Intensity = intensity;
-            ViewBag.Exclude = exclude;
-            ViewBag.Notes = notes;
+            ViewBag.Date = ModelState["Date"].Value.AttemptedValue;
+            ViewBag.ActivityId = ModelState["ActivityId"].Value.AttemptedValue;
+            ViewBag.Duration = ModelState["Duration"].Value.AttemptedValue;
+            ViewBag.Intensity = ModelState["Intensity"].Value.AttemptedValue;
+            ViewBag.Exclude = ModelState["Exclude"].Value.AttemptedValue;
+            ViewBag.Notes = ModelState["Notes"].Value.AttemptedValue;
 
             return View();
         }
