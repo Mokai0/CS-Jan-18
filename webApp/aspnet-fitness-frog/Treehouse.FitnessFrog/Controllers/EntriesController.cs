@@ -45,10 +45,11 @@ namespace Treehouse.FitnessFrog.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(string date, string activityId, string duration, string intensity, string exclude, string notes)
+        public ActionResult Add(DateTime? date, int? activityId, double? duration, Entry.IntensityLevel? intensity, bool? exclude, string notes)
         {
-            //string date = Request.Form["Date"];
-            //This line of code will catch the info passed into the 'Date' form field and would have to be repeated for each and every form field that we'd want to retrieve. Conversly the above added parameters allow both the ability of catching the desired POST data as well as making the this method's signiture unique removing the need for an attribute tag to associate this method.
+            //DateTime dateValue;
+            //DateTime.TryParse(date, out dateValue);
+            //The above code would convert the incoming data into the correct datatype but thankfully C# allows an attempt at auto conversion if you just type the values themselves within the method call's parameters
 
             ViewBag.Date = date;
             ViewBag.ActivityId = activityId;
