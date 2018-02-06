@@ -86,6 +86,8 @@ namespace Treehouse.FitnessFrog.Models
         /// </summary>
         public bool Exclude { get; set; }
 
+        //[Required] This would make the Notes field required
+        [MaxLength(200, ErrorMessage = "It's a note not a book. Make it shorter!")]
         /// <summary>
         /// The notes for the entry.
         /// </summary>
