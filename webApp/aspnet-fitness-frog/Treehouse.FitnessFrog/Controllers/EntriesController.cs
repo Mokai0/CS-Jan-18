@@ -63,6 +63,8 @@ namespace Treehouse.FitnessFrog.Controllers
             {
                 _entriesRepository.AddEntry(entry);
 
+                TempData["Message"] = "Another GAIN on the board!";
+
                 return RedirectToAction("Index");
             }
 
@@ -99,6 +101,8 @@ namespace Treehouse.FitnessFrog.Controllers
             {
                 _entriesRepository.UpdateEntry(entry);
 
+                TempData["Message"] = "Modified your GAIN!";
+
                 return RedirectToAction("Index");
             }
 
@@ -114,25 +118,22 @@ namespace Treehouse.FitnessFrog.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            //TODO retrieve entry for the provided id parameter value
             Entry entry = _entriesRepository.GetEntry((int)id);
 
-            //TODO return "not found" if nothing was found
             if (entry == null)
             {
                 return HttpNotFound();
             }
-            //TODO pass the entry to the View
             return View(entry);
         }
 
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            //TODO Delete the entry
             _entriesRepository.DeleteEntry(id);
 
-            //TODO redirect to the "Entries" list page.
+            TempData["Message"] = "Your GAIN was removed! Such a sad day :(";
+
             return RedirectToAction("Index");
         }
 
