@@ -78,39 +78,30 @@ namespace Treehouse.FitnessFrog.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            //TODO Get the requested entry from the repo.
             Entry entry = _entriesRepository.GetEntry((int)id);
 
-            //TODO Retrun a status of "not found" if the entry wasn't found
             if (entry == null)
             {
                 return HttpNotFound();
             }
 
-            //TODO populate the activities select list items ViewBag property
             SetupActivitiesSelectListItems();
 
-            //TODO Pass the entry into the view
             return View(entry);
         }
 
         [HttpPost]
         public ActionResult Edit(Entry entry)
         {
-            //TODO Validate the entry.
             ValidateEntry(entry);
 
-            //TODO If the entry is valid...
             if (ModelState.IsValid)
             {
-                //1 use the repo to update the entry
                 _entriesRepository.UpdateEntry(entry);
 
-                //2 redirect the user to the entries list page
                 return RedirectToAction("Index");
             }
 
-            //TODO populate the activities select list items ViewBag property.
             SetupActivitiesSelectListItems();
 
             return View(entry);
@@ -128,7 +119,6 @@ namespace Treehouse.FitnessFrog.Controllers
 
         private void ValidateEntry(Entry entry)
         {
-            // If there aren't any "Duration" field validation errors then make sure that the duration is greater than "0".
             if (ModelState.IsValidField("Duration") && entry.Duration <= 0)
             {
                 ModelState.AddModelError("Duration", "Duration must be greater than zero.");
