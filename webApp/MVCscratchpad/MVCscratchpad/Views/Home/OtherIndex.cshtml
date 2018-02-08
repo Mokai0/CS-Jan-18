@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "OtherIndex";
+}
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("You've been duped",null ,null , new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><font color="white">NOPE NOTHING HERE</font></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<h2>You have come to the dead zone <br />To go back hit the button below:</h2>
+
+@Html.ActionLink("Show me the way", "Index", null, new { @class = "btn btn-primary btn-lg btn-block" })
