@@ -60,9 +60,9 @@ namespace ComicBookGalleryModel
                 context.SaveChanges();
 
                 var comicBooks = context.ComicBooks
-                    .Include(cb => cb.Series)
-                    .Include(cb => cb.Artists)
-                    .ToList();
+                .Include(cb => cb.Series)
+                .Include(cb => cb.Artists)
+                .ToList();
                 foreach (var comicBook in comicBooks)
                 {
                     var artistNames = comicBook.Artists.Select(a => a.Name).ToList();
