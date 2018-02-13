@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 
 namespace ComicBookGalleryModel.Models
 {
-    public class Series
+    public class Artist
     {
-        public Series()
+        public Artist()
         {
             ComicBooks = new List<ComicBook>();
         }
 
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public string Name { get; set; }
 
         public ICollection<ComicBook> ComicBooks { get; set; }
     }
