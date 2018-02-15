@@ -1,8 +1,10 @@
-﻿using System;
+﻿using ConsoleEFtesting.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace ConsoleEFtesting
 {
@@ -10,6 +12,21 @@ namespace ConsoleEFtesting
     {
         static void Main(string[] args)
         {
+            var brand1 = new Brand()
+            {
+                BrandName = "Ziyad"
+            };
+
+            //var item1 = new Items()
+            //{
+            //    Brand = brand1,
+            //    ProductName = "hummus",
+            //    Size = 12,
+            //    Unit = Oz,
+            //    Cases = 10,
+            //    Cost = 22.29,
+            //    Expiration =
+            //};
         }
     }
 }
