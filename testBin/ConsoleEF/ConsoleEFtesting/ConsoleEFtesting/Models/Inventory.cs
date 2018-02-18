@@ -14,23 +14,16 @@ namespace ConsoleEFtesting.Models
         }
 
         public int Id { get; set; }
-        public int BrandId { get; set; }
         public int ItemId { get; set; }
-        public string ProductName { get; set; }
-        public double Size { get; set; }
-        public string Unit { get; set; }
-        public double Cases { get; set; }
-        public double Cost { get; set; }
-        public DateTime Expiration { get; set; }
 
-        public Brand Brand { get; set; }
-        //This will retrieve the Brand associated with the product
+        public Item Item { get; set; }
+        //This should retrieve the Item(Product) associated with the Product
 
         public string DisplayText
         {
             get
             {
-                return $"{Brand?.BrandName} {ProductName}";
+                return $"{Item?.Brand.BrandName} {Item.ProductName}";
             }
         }
     }
