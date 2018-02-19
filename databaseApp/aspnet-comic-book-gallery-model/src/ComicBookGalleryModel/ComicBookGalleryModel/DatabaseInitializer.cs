@@ -10,7 +10,6 @@ namespace ComicBookGalleryModel
 {
     internal class DatabaseInitializer
         : DropCreateDatabaseIfModelChanges<Context>
-        //'internal' here is redundant since w/o a access modifier the class will inherently be 'internal' - however its good to be explicit.
     {
         protected override void Seed(Context context)
         {
