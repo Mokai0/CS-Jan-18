@@ -20,8 +20,7 @@ namespace ComicBookGalleryModel.Models
         public DateTime PublishedOn { get; set; }
         public decimal? AverageRating { get; set; }
 
-        public Series Series { get; set; }
-        //With Lazy loading a 'virtual' keyword is necessary; w/o it you'll need to do some extra wiring - see Program.cs
+        public virtual Series Series { get; set; }
         public virtual ICollection<ComicBookArtist> Artists { get; set; }
 
         public string DisplayText

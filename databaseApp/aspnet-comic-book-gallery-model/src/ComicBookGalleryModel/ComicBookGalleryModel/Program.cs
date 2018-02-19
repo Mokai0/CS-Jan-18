@@ -66,17 +66,6 @@ namespace ComicBookGalleryModel
                 .ToList();
                 foreach (var comicBook in comicBooks)
                 {
-                    if (comicBook.Series == null)
-                    {
-                        context.Entry(comicBook)
-                            //The 'Entry' method returns a Db Entity Entry Object for the referenced entity. Every entity that has been materialized and tracked by the context has a Db Entity Entry Object associated with it. - Basically once it's been pulled by EF and being used it has a 'key' association that can be used to track and manipulate it.
-                            //.Collection
-                            //'Collection' doesn't work here since the Series property is a non-collection navigation property
-                            .Reference(cb => cb.Series)
-                            .Load();
-                            //The Load method will execute a query against the database everytime its called regardless if the necessary info is loaded or not. This means it should almost always be called within a conditional statement.
-                    }
-
                     var artistRoleNames = comicBook.Artists
                         .Select(a => $"{a.Artist.Name} - {a.Role.Name}").ToList();
                     var artistRolesDisplayText = string.Join(", ", artistRoleNames);
