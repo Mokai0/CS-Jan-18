@@ -12,7 +12,7 @@ namespace ConsoleEFtesting
     {
         public Context()
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<Context>());
+            Database.SetInitializer(new DatabaseInitializer());
         }
 
         public DbSet<Inventory> Inventorys { get; set; }
