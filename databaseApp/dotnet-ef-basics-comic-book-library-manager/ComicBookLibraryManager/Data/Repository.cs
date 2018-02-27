@@ -133,7 +133,17 @@ namespace ComicBookLibraryManager.Data
         /// <param name="comicBook">The ComicBook entity instance to add.</param>
         public static void AddComicBook(ComicBook comicBook)
         {
-            // TODO
+            using (Context context = GetContext())
+            {
+                context.ComicBooks.Add(comicBook);
+
+                if (comicBook.Series != null && comicBook.Series.Id > 0)
+                {
+                    context.Entry(comicBook.Series).State = EntityState.Unchanged;
+                }
+
+                context.SaveChanges();
+            }
         }
 
         /// <summary>
