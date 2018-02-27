@@ -167,15 +167,11 @@ namespace ComicBookLibraryManager.Data
         {
             using (Context context = GetContext())
             {
-                ComicBook comicBookToUpdate = context.ComicBooks.Find(comicBook.Id);
-
-                //comicBookToUpdate.SeriesId = comicBook.SeriesId;
-                //comicBookToUpdate.IssueNumber = comicBook.IssueNumber;
-                //comicBookToUpdate.Description = comicBook.Description;
-                //comicBookToUpdate.PublishedOn = comicBook.PublishedOn;
-                //comicBookToUpdate.AverageRating = comicBook.AverageRating;
-                //All this does the same as:
-                context.Entry(comicBookToUpdate).CurrentValues.SetValues(comicBook);
+                //context.Entry(comicBookToUpdate).CurrentValues.SetValues(comicBook);
+                context.ComicBooks.Attach(comicBook);
+                //This will stage changes to be added but doesn't officially tell EF that any value has been changed and will therefore read as 'Unchanged'
+                context.Entry(comicBook).State = EntityState.Modified;
+                //This will force the updated values to appear changed to EF
 
                 context.SaveChanges();
             }
