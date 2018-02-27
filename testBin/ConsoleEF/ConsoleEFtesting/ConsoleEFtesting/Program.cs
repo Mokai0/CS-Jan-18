@@ -14,23 +14,7 @@ namespace ConsoleEFtesting
         {
             using (var context = new Context())
             {
-                var brand1 = new Brand()
-                {
-                    BrandName = "Ziyad"
-                };
-
-                var item1 = new Item()
-                {
-                    Brand = brand1,
-                    ProductName = "hummus",
-                    Size = 12,
-                    Unit = "Oz",
-                    Cases = 10,
-                    Cost = 22.29,
-                    Expiration = DateTime.Today
-                    //Set only for now, will change later
-                };
-                context.SaveChanges();
+                
 
 
 

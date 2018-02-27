@@ -23,7 +23,6 @@ namespace ConsoleEFtesting.Models
 
         public Brand Brand { get; set; }
         //This will retrieve the Brand associated with the product
-
         public ICollection<Inventory> Inventorys { get; set; }
     }
 }

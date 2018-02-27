@@ -15,7 +15,6 @@ namespace ConsoleEFtesting.Models
 
         public int Id { get; set; }
         public string BrandName { get; set; }
-
         public ICollection<Inventory> Inventorys { get; set; }
     }
 }
