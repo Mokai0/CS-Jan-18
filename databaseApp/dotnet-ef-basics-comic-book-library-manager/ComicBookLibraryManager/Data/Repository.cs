@@ -185,7 +185,17 @@ namespace ComicBookLibraryManager.Data
         /// <param name="comicBookId">The comic book ID to delete.</param>
         public static void DeleteComicBook(int comicBookId)
         {
-            // TODO
+            using (Context context = GetContext())
+            {
+                //ComicBook comicBook = context.ComicBooks.Find(comicBookId);
+                //context.ComicBooks.Remove(comicBook);
+                //While this method works lets explore another option that doesn't retrieve the entity from the database:
+                var comicBook = new ComicBook() { Id = comicBookId };
+                context.Entry(comicBook).State = EntityState.Deleted;
+                //This is what's called a stub Entity and it works here because all we need to delete a comicBook is it's Id - kinda like grabbing a skillet by just the handle instead of the hole thing
+
+                context.SaveChanges();
+            }
         }
     }
 }
