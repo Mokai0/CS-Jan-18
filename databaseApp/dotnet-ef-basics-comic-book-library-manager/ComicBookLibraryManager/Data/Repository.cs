@@ -168,10 +168,12 @@ namespace ComicBookLibraryManager.Data
             using (Context context = GetContext())
             {
                 //context.Entry(comicBookToUpdate).CurrentValues.SetValues(comicBook);
+
                 context.ComicBooks.Attach(comicBook);
-                //This will stage changes to be added but doesn't officially tell EF that any value has been changed and will therefore read as 'Unchanged'
-                context.Entry(comicBook).State = EntityState.Modified;
-                //This will force the updated values to appear changed to EF
+                var comicBookEntry = context.Entry(comicBook);
+                comicBookEntry.State = EntityState.Modified;
+                //comicBookEntry.Property("IssueNumber").IsModified = false;
+                //This would allow you to cement the IssueNumber and prevent it from being changed once its created
 
                 context.SaveChanges();
             }
