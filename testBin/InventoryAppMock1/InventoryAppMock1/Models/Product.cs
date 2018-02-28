@@ -11,10 +11,14 @@ namespace InventoryAppMock1.Models
     {
         public int Id { get; set; }
         [Required]
-        public string Brand { get; set; }
-        [Required]
         public string ProductName { get; set; }
         public int Quantity { get; set; }
         public DateTime? ExpirationDate { get; set; }
+        //Allow nullability
+        public string Catagory { get; set; }
+
+        [Required]
+        public Brand Brand { get; set; }
+
     }
 }
