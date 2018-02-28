@@ -9,16 +9,33 @@ namespace InventoryAppMock1.Models
 {
     public class Product
     {
+        //public Product() { Categorys = new List<Category>(); }
+        //Only 1 Category per product so not a many to many but a one to many
+
         public int Id { get; set; }
-        [Required]
+        public int BrandId { get; set; }
+        public int CategoryId { get; set; }
+        [Required, StringLength(100)]
         public string ProductName { get; set; }
-        public int Quantity { get; set; }
+        public decimal Quantity { get; set; }
         public DateTime? ExpirationDate { get; set; }
-        //Allow nullability
-        public string Catagory { get; set; }
 
         [Required]
         public Brand Brand { get; set; }
+        public Category Category { get; set; }
+        //public ICollection<Category> Categorys { get; set; }
+        //One to many not many to many
 
+        
+        /// <summary>
+        /// Text Display functions follow
+        /// </summary>
+        public string ItemInfo
+        {
+            get
+            {
+                return $"{Brand.Name} {ProductName} | {Category?.Info}";
+            }
+        }
     }
 }

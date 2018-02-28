@@ -7,18 +7,17 @@ using System.Threading.Tasks;
 
 namespace InventoryAppMock1.Models
 {
-    public class Brand
+    public class Category
     {
-        public Brand()
+        public Category()
         {
             Products = new List<Product>();
         }
 
         public int Id { get; set; }
-        [StringLength(25)]
-        public string Name { get; set; }
+        [StringLength(50)]
+        public string Info { get; set; }
 
         public ICollection<Product> Products { get; set; }
-        //This is put here because a Brand can be associated with more than one Product
     }
 }
