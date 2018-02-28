@@ -13,7 +13,10 @@ namespace InventoryAppMock1
     {
         public Context()
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<Context>());
+            Database.SetInitializer(new
+            //DropCreateDatabaseAlways<Context>());
+            //Will now be using the custom made initializer
+            DatabaseInitializer());
         }
 
         public DbSet<Product> Products { get; set; }
