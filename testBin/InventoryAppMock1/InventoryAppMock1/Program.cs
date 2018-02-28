@@ -18,6 +18,7 @@ namespace InventoryAppMock1
                 var products = context.Products
                     .Include(p => p.Brand)
                     //if this wasn't here the brand wouldn't be included
+                    .Include(p => p.Category)
                     .ToList();
                 foreach (var product in products)
                 {

@@ -9,7 +9,8 @@ using System.Data.Entity;
 namespace InventoryAppMock1
 {
     internal class DatabaseInitializer
-        : DropCreateDatabaseIfModelChanges<Context>
+        //: DropCreateDatabaseIfModelChanges<Context>
+        : DropCreateDatabaseAlways<Context>
     {
         protected override void Seed(Context context)
         {
