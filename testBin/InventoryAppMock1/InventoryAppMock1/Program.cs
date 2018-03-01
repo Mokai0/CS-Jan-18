@@ -25,7 +25,7 @@ namespace InventoryAppMock1
                     Console.WriteLine(product.ItemInfo);
                 }
 
-                Console.ReadLine();
+                //Console.ReadLine();
             }
         }
     }

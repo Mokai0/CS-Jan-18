@@ -19,6 +19,7 @@ namespace InventoryAppMock1.Models
         public string ProductName { get; set; }
         public decimal Quantity { get; set; }
         public DateTime? ExpirationDate { get; set; }
+        public int MyProperty { get; set; }
 
         [Required]
         public Brand Brand { get; set; }
