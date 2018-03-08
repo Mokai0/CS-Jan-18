@@ -1,4 +1,4 @@
-﻿using InventoryAppMock1.Models;
+﻿using InventoryShared.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InventoryAppMock1
+namespace InventoryShared
 {
     public class Context : DbContext
     {

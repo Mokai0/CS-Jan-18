@@ -1,4 +1,4 @@
-﻿using InventoryAppMock1.Models;
+﻿using InventoryShared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 
-namespace InventoryAppMock1
+namespace InventoryShared
 {
     internal class DatabaseInitializer
         //: DropCreateDatabaseIfModelChanges<Context>

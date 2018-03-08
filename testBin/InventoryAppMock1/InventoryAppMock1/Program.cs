@@ -1,4 +1,5 @@
-﻿using InventoryAppMock1.Models;
+﻿using InventoryShared;
+using InventoryShared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
