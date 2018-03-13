@@ -10,12 +10,7 @@ namespace MVCtake2.Controllers
     {
         public ActionResult Detail()
         {
-            if (DateTime.Today.DayOfWeek == DayOfWeek.Monday)
-            {
-                return Redirect("/");
-            }
-
-            return Content("It's the Home Page!");
+            return View();
         }
     }
 }
