@@ -17,7 +17,8 @@ namespace MVCtake2.Controllers
                 Genre = "Fighting",
                 Description = "<p>A high octane brawler!</p>",
                 Developers = new string[]
-                {"Nintendo", "The Kirby Guy"}
+                {"Nintendo", "The Kirby Guy"},
+                Favorite = true
             };
 
             return View(game);

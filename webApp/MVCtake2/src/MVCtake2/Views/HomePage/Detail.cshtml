@@ -5,29 +5,24 @@
     ViewBag.Title = Model.DisplayText;
 }
 
-<!DOCTYPE html>
+<div>
+    <h1>@Model.Title</h1>
+    <h2><label>What genre:</label> @Model.Genre</h2>
+    <h5><label>Favorite:</label> @(Model.Favorite ? "Yes" : "Nope")</h5>
+    <h3>@Html.Raw(Model.Description)</h3>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
+    @if (Model.Developers.Length > 0)
+    {
+        <h4>Made by:</h4>
+        <ul>
+            @foreach (var thing in Model.Developers)
+            {
+                <li>@thing</li>
+            }
+        </ul>
+    }
     <div>
-        <h1>@Model.Title</h1>
-        <h2>@Model.Genre</h2>
-        <h3>@Html.Raw(Model.Description)</h3>
-
-        @if (Model.Developers.Length > 0)
-        {
-            <h4>Made by:</h4>
-            <ul>
-                @foreach (var thing in Model.Developers)
-                {
-                    <li>@thing</li>
-                }
-            </ul>
-        }
+        <img src="~/Images/@Model.GamePic"
+             alt="@Model.DisplayText" class="img-responsive" />
     </div>
-</body>
-</html>
+</div>
