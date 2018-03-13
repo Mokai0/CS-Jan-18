@@ -12,6 +12,7 @@ namespace MVCtake2.Data
         {
             new Game()
             {
+                Id = 1,
                 Title = "Super Smash Bros",
                 Genre = "Fighting",
                 Description = "<p>A high octane brawler!</p>",
@@ -21,6 +22,7 @@ namespace MVCtake2.Data
             },
             new Game()
             {
+                Id = 2,
                 Title = "Super Smash Bros Melee",
                 Genre = "Fighting",
                 Description = "<p>The stupifying experience continues!</p>",
@@ -35,8 +37,11 @@ namespace MVCtake2.Data
             Game gameToReturn = null;
             foreach (var game in _games)
             {
-                gameToReturn = game;
-                break;
+                if (game.Id == id)
+                {
+                    gameToReturn = game;
+                    break;
+                }
             }
             return gameToReturn;
         }

@@ -1,4 +1,5 @@
-﻿using MVCtake2.Models;
+﻿using MVCtake2.Data;
+using MVCtake2.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +10,20 @@ namespace MVCtake2.Controllers
 {
     public class HomePageController : Controller
     {
-        public ActionResult Detail()
-        {
-            var game = new Game()
-            {
-                Title = "Super Smash Bros",
-                Genre = "Fighting",
-                Description = "<p>A high octane brawler!</p>",
-                Developers = new string[]
-                {"Nintendo", "The Kirby Guy"},
-                Favorite = true
-            };
+        private GameRepo _gameRepo = null;
 
+        public HomePageController()
+        {
+            _gameRepo = new GameRepo();
+        }
+
+        public ActionResult Detail(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            var game = _gameRepo.GetGame((int)id);
             return View(game);
         }
     }
