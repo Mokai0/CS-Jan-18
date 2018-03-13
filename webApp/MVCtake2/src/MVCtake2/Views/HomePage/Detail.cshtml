@@ -1,5 +1,12 @@
 ﻿@{
     Layout = null;
+    var testScript = "<p>Crazy cool stuffs</p>";
+    var things = new string[]
+    {
+        "Backgammon",
+        "Chess",
+        "Cards"
+    };
 }
 
 <!DOCTYPE html>
@@ -12,6 +19,18 @@
 <body>
     <div>
         <h1>Hello View!</h1>
+        <h3>@Html.Raw(testScript)</h3>
+
+        @if (things.Length > 0)
+        {
+            <h4>Fun games:</h4>
+            <ul>
+                @foreach (var thing in things)
+                {
+                    <li>@thing</li>
+                }
+            </ul>
+        }
     </div>
 </body>
 </html>
