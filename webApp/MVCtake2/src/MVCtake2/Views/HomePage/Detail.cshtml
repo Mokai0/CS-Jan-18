@@ -1,13 +1,8 @@
-﻿@{
+﻿@model MVCtake2.Models.Game
+
+@{
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
-    ViewBag.Title = "Home Page";
-    var testScript = "<p>Crazy cool stuffs</p>";
-    var things = new string[]
-    {
-        "Backgammon",
-        "Chess",
-        "Cards"
-    };
+    ViewBag.Title = Model.DisplayText;
 }
 
 <!DOCTYPE html>
@@ -19,14 +14,15 @@
 </head>
 <body>
     <div>
-        <h1>Hello View!</h1>
-        <h3>@Html.Raw(testScript)</h3>
+        <h1>@Model.Title</h1>
+        <h2>@Model.Genre</h2>
+        <h3>@Html.Raw(Model.Description)</h3>
 
-        @if (things.Length > 0)
+        @if (Model.Developers.Length > 0)
         {
-            <h4>Fun games:</h4>
+            <h4>Made by:</h4>
             <ul>
-                @foreach (var thing in things)
+                @foreach (var thing in Model.Developers)
                 {
                     <li>@thing</li>
                 }

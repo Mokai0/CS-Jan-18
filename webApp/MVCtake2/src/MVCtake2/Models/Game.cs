@@ -13,5 +13,22 @@ namespace MVCtake2.Models
         public string Description { get; set; }
         public string[] Developers { get; set; }
         public bool Favorite { get; set; }
+
+        public string DisplayText
+        {
+            get
+            {
+                return Title + "|" + Genre;
+            }
+        }
+
+        //Game pic filename = game name minus spaces and all lowercase
+        public string GamePic
+        {
+            get
+            {
+                return Title.Replace(" ", "-").ToLower() + ".jpg";
+            }
+        }
     }
 }

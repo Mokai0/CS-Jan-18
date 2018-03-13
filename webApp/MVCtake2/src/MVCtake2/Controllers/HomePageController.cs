@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVCtake2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,16 @@ namespace MVCtake2.Controllers
     {
         public ActionResult Detail()
         {
-            return View();
+            var game = new Game()
+            {
+                Title = "Super Smash Bros",
+                Genre = "Fighting",
+                Description = "<p>A high octane brawler!</p>",
+                Developers = new string[]
+                {"Nintendo", "The Kirby Guy"}
+            };
+
+            return View(game);
         }
     }
 }
