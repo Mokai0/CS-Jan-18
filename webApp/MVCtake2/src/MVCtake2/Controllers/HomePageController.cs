@@ -17,6 +17,13 @@ namespace MVCtake2.Controllers
             _gameRepo = new GameRepo();
         }
 
+        public ActionResult Index()
+        {
+            var games = _gameRepo.GetGames();
+
+            return View(games);
+        }
+
         public ActionResult Detail(int? id)
         {
             if (id == null)

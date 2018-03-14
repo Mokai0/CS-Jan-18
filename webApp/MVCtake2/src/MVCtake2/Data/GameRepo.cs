@@ -30,7 +30,12 @@ namespace MVCtake2.Data
                 {"Nintendo", "The Kirby Guy"},
                 Favorite = true
             }
-    };
+        };
+
+        public Game[] GetGames()
+        {
+            return _games;
+        }
 
         public Game GetGame(int id)
         {
