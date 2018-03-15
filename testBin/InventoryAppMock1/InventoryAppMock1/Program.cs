@@ -22,8 +22,9 @@ namespace InventoryAppMock1
                     .Include(p => p.Brand)
                     .Include(p => p.Category)
                     //.Where(p => p.ProductName.Contains("beans"))
-                    .Where(p => p.Category.Ref == "Can" || p.Brand.Name == "Ziyad")
+                    //.Where(p => p.Category.Ref == "Can" || p.Brand.Name == "Ziyad")
                     .OrderBy(p => p.Quantity)
+                    .ThenBy(p => p.Category)
                     .ToList();
 
                 foreach (var product in products)
