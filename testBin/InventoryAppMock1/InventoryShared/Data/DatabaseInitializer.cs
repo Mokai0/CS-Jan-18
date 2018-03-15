@@ -9,14 +9,15 @@ using System.Data.Entity;
 namespace InventoryShared
 {
     internal class DatabaseInitializer
-        //: DropCreateDatabaseIfModelChanges<Context>
-        : DropCreateDatabaseAlways<Context>
+        : DropCreateDatabaseIfModelChanges<Context>
+        //: DropCreateDatabaseAlways<Context>
     {
         protected override void Seed(Context context)
         {
             var Ziyad = new Brand() { Name = "Ziyad" };
             var Cortas = new Brand() { Name = "Cortas" };
             var Tazah = new Brand() { Name = "Tazah" };
+            var Shan = new Brand() { Name = "Shan" };
 
             var Dry = new Category() { Info = "Dried Foods" };
             var Can = new Category() { Info = "Canned Foods" };
@@ -66,6 +67,13 @@ namespace InventoryShared
                 ProductName = "Fava Beans",
                 Quantity = 8,
                 Category = Can
+            });
+            context.Products.Add(new Product()
+            {
+                Brand = Shan,
+                ProductName = "Biryani",
+                Quantity = 2,
+                Category = Spice
             });
             context.SaveChanges();
         }
