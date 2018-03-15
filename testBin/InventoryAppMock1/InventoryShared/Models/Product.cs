@@ -35,7 +35,12 @@ namespace InventoryShared.Models
         {
             get
             {
-                return $"{Brand.Name} {ProductName} | {Category?.Info} | {Quantity} in stock | Expires on {ExpirationDate}";
+                if (ExpirationDate != null)
+                {
+                    return $"{Brand.Name} {ProductName} | {Category?.Info} | {Quantity} in stock | Expires on {ExpirationDate}";
+                }
+
+                return $"{Brand.Name} {ProductName} | {Category?.Info} | {Quantity} in stock";
             }
         }
     }

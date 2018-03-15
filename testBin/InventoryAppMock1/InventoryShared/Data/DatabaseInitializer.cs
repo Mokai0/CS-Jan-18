@@ -31,7 +31,7 @@ namespace InventoryShared
                 ProductName = "Okra Zero",
                 Quantity = 5,
                 Category = Frozen,
-                ExpirationDate = new DateTime(2020,1,1)
+                ExpirationDate = new DateTime(2023,1,1)
             });
             context.Products.Add(new Product()
             {
