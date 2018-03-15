@@ -17,6 +17,7 @@ namespace InventoryShared.Models
         public int Id { get; set; }
         [StringLength(50)]
         public string Info { get; set; }
+        public string Ref { get; set; }
 
         public ICollection<Product> Products { get; set; }
     }

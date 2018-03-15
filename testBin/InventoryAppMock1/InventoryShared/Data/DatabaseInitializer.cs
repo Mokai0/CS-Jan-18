@@ -19,11 +19,11 @@ namespace InventoryShared
             var Tazah = new Brand() { Name = "Tazah" };
             var Shan = new Brand() { Name = "Shan" };
 
-            var Dry = new Category() { Info = "Dried Foods" };
-            var Can = new Category() { Info = "Canned Foods" };
-            var Dairy = new Category() { Info = "Dairy Foods" };
-            var Spice = new Category() { Info = "Spices" };
-            var Frozen = new Category() { Info = "Frozen Foods" };
+            var Dry = new Category() { Info = "Dried Foods", Ref = "Dry" };
+            var Can = new Category() { Info = "Canned Foods", Ref = "Can" };
+            var Dairy = new Category() { Info = "Dairy Foods", Ref = "Dairy" };
+            var Spice = new Category() { Info = "Spices", Ref = "Spice" };
+            var Frozen = new Category() { Info = "Frozen Foods", Ref = "Frozen" };
 
             context.Products.Add(new Product()
             {

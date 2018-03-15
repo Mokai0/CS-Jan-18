@@ -21,10 +21,7 @@ namespace InventoryAppMock1
                 var products = context.Products
                     .Include(p => p.Brand)
                     .Include(p => p.Category)
-                    .Where(p => p.CategoryId == 3)
-                    //The catagories are out of order 
-                    //For some reason this doesn't work
-                    //.Where(p => p.Category == Can)
+                    .Where(p => p.Category.Ref == "Can")
                     .ToList();
 
                 foreach (var product in products)
