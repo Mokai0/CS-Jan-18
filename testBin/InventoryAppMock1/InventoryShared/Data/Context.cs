@@ -11,6 +11,10 @@ namespace InventoryShared
 {
     public class Context : DbContext
     {
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        
         public Context()
         {
             Database.SetInitializer(new
@@ -18,8 +22,6 @@ namespace InventoryShared
             //Will now be using the custom made initializer
             DatabaseInitializer());
         }
-
-        public DbSet<Product> Products { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

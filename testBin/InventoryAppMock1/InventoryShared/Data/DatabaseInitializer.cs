@@ -19,7 +19,7 @@ namespace InventoryShared
             var Tazah = new Brand() { Name = "Tazah" };
             var Shan = new Brand() { Name = "Shan" };
 
-            //Ask if it's possible or best practice to initialize the catagories within the Catagory.cs Model
+            //Ask if it's possible or best practice to initialize the catagories within the Category.cs Model
             var Dry = new Category() { Info = "Dried Foods", Ref = "Dry" };
             var Can = new Category() { Info = "Canned Foods", Ref = "Can" };
             var Dairy = new Category() { Info = "Dairy Foods", Ref = "Dairy" };

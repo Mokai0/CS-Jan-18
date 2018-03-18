@@ -31,7 +31,7 @@ namespace InventoryShared.Data
             }
         }
 
-        //<summary> Returns a list of products ordered by Brand (as this would correlate to what distributer I'd need to consult) then by Catagory (because this way I could go through each section of the store for the respective distributer without the need for doubling back).
+        //<summary> Returns a list of products ordered by Brand (as this would correlate to what distributer I'd need to consult) then by Category (because this way I could go through each section of the store for the respective distributer without the need for doubling back).
         //<returns> An IList collection of Product entity instances.
         public static IList<Product> GetProducts()
         {
@@ -46,5 +46,49 @@ namespace InventoryShared.Data
                     .ToList();
             }
         }
+
+        //<summary> Pull a single product.
+        //<returns> A fully populated Product entity instance.
+        ///<param name="productId"> The specific product I wanna get.
+        public static Product GetProduct(int productId)
+        {
+            using (Context context = GetContext())
+            {
+                return context.Products
+                    .Include(p => p.Brand)
+                    .Include(p => p.Category)
+                    .Where(p => p.Id == productId)
+                    .SingleOrDefault();
+            }
+        }
+
+        //<summary> Returns a list of Brands ordered by name.
+        //<returns> An IList collection of Brand entity instances.
+        public static IList<Brand> GetBrands()
+        {
+            //IList<Brand> above is referencing the Brand class,
+            //context.Brands however is referencing the DbSet property within the Context class.
+            using (Context context = GetContext())
+            {
+                return context.Brands
+                    .OrderBy(b => b.Name)
+                    .ToList();
+            }
+        }
+
+        //<summary> Returns a single Brand
+        //<returns> A Brand entity instance.
+        ///<param name="brandId"> The specific Brand I want returned
+        public static Brand GetBrand(int brandId)
+        {
+            using (Context context = GetContext())
+            {
+                return context.Brands
+                    .Where(b => b.Id == brandId)
+                    .SingleOrDefault();
+            }
+        }
+
+
     }
 }
