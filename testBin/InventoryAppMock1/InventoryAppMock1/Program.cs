@@ -51,8 +51,136 @@ namespace InventoryAppMock1
                     case CommandListProducts:
                         productIds = ListProducts();
                         break;
+                    case CommandAddProduct:
+                        AddProduct();
+                        command = CommandListProducts;
+                        continue;
+                    //default:
+                    //    if (AttemptDisplayProduct(command, productIds))
+                    //    {
+                    //        command = CommandListProducts;
+                    //        continue;
+                    //    }
+                    //    else
+                    //    {
+                    //        ConsoleHelper.OutputLine("Sorry, wrong command.");
+                    //    }
+                        break;
                 }
             }
+        }
+
+        //<summary> Promts for product values to add then adds product to database.
+        //<returns> Null.
+        private static void AddProduct()
+        {
+            ConsoleHelper.ClearOutput();
+            ConsoleHelper.OutputLine("Add a product");
+
+            //Get the product's values from the user:
+            var product = new Product();
+            product.BrandId = GetBrandId();
+            product.CategoryId = GetCategoryId();
+            product.ProductName = GetProductName();
+            product.Quantity = GetQuantity();
+            //product.ExpirationDate = GetExpirationDate();
+            //This last one will be gravy.
+        }
+
+        //<summary> Gets the needed Brand Id based on user input.
+        //<returns> A specific Brand's Id as an integar.
+        private static int GetBrandId()
+        {
+            int? brandId = null;
+            IList<Brand> brands = Repository.GetBrands();
+
+            //While the brandId is null prompt the user to pick a Brand form a list:
+            while (brandId == null)
+            {
+                ConsoleHelper.OutputBlankLine();
+
+                foreach (Brand b in brands)
+                {
+                    ConsoleHelper.OutputLine("{0}) {1}", brands.IndexOf(b) + 1, b.Name);
+                }
+
+                //Get the line number for the selected Brand
+                string lineNumberInput = ConsoleHelper.ReadInput("What Brand is this product?");
+                int lineNumber = 0;
+                if (int.TryParse(lineNumberInput, out lineNumber))
+                {
+                    if (lineNumber > 0 && lineNumber <= brands.Count)
+                    {
+                        brandId = brands[lineNumber - 1].Id;
+                    }
+                    else
+                    {
+                        ConsoleHelper.OutputLine("\"" + lineNumber + "\" is not a valid choice. Please try again");
+                    }
+                }
+            }
+
+            return brandId.Value;
+        }
+
+        //<summary> Gets the Category that the user selected.
+        //<returns> An Id for the Category that the user selected.
+        private static int GetCategoryId()
+        {
+            int? categoryId = null;
+            IList<Category> categories = Repository.GetCategories();
+
+            while (categoryId == null)
+            {
+                ConsoleHelper.OutputBlankLine();
+                foreach (Category c in categories)
+                {
+                    ConsoleHelper.OutputLine("{0}) {1}", categories.IndexOf(c) + 1, c.Info);
+                }
+
+                string lineInput = ConsoleHelper.ReadInput("Where does this product go?");
+                int lineNumber = 0;
+                if (int.TryParse(lineInput, out lineNumber))
+                {
+                    if (lineNumber > 0 && lineNumber < categories.Count)
+                    {
+                        categoryId = categories[lineNumber--].Id;
+                    }
+                    else
+                    {
+                        ConsoleHelper.OutputLine("\"" + lineNumber + "\" is an invalid selection. Please try again");
+                    }
+                }
+            }
+            return categoryId.Value;
+        }
+
+        //<summary> Takes the users input and creates a name for the new product.
+        //<returns> The user's input as a string and passes it into the product.ProductName.
+        private static string GetProductName()
+        {
+            return ConsoleHelper.ReadInput("What is the product's name: ");
+        }
+
+        //<summary> Takes the user's input as the quantity of the product currently in stock.
+        //<returns> The user's input as a decimal for the product.Quantity.
+        private static decimal GetQuantity()
+        {
+            decimal? quantity = null;
+            while (quantity == null)
+            {
+                string qInput = ConsoleHelper.ReadInput("How many cases of this product do you have?: ");
+                decimal qCount;
+                if (decimal.TryParse(qInput, out qCount))
+                {
+                    quantity = qCount;
+                }
+                else
+                {
+                    ConsoleHelper.OutputLine("Sorry, I need a valid number");
+                }
+            }
+            return quantity.Value;
         }
 
         //<summary> Retrieves the products from the database and lists them
@@ -64,7 +192,6 @@ namespace InventoryAppMock1
 
             ConsoleHelper.ClearOutput();
             ConsoleHelper.OutputLine("Inventory");
-
             ConsoleHelper.OutputBlankLine();
 
             foreach (Product product in products)
