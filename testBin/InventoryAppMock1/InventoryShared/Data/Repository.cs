@@ -9,11 +9,11 @@ using System.Diagnostics;
 
 namespace InventoryShared.Data
 {
-    //This class should handle the various CRUD operations handling
+    //This class should handle the various CRUD operations handling.
     public static class Repository
     {
-        //<summary> Private method that returns a db context to the class
-        //<returns> An instance of the context class
+        //<summary> Private method that returns a db context to the class.
+        //<returns> An instance of the context class.
         static Context GetContext()
         {
             var context = new Context();
@@ -76,9 +76,9 @@ namespace InventoryShared.Data
             }
         }
 
-        //<summary> Returns a single Brand
+        //<summary> Returns a single Brand.
         //<returns> A Brand entity instance.
-        ///<param name="brandId"> The specific Brand I want returned
+        ///<param name="brandId"> The specific Brand I want returned.
         public static Brand GetBrand(int brandId)
         {
             using (Context context = GetContext())
@@ -89,6 +89,32 @@ namespace InventoryShared.Data
             }
         }
 
+        //<summary> Return a list of Categories ordered by name.
+        //<returns> An IList collection of Category entity instances.
+        public static IList<Category> GetCategories()
+        {
+            using (Context context = GetContext())
+            {
+                return context.Categories
+                    .OrderBy(b => b.Info)
+                    .ToList();
+                //I chose to retrieve the Categories here by Info instead of Ref for 2 reasons:
+                    //The first is for readability
+                    //The second is because Ref is more for my own (back end and programming) purposes.
+            }
+        }
 
+        //<summary> Returns a single Category.
+        //<returns> A Category entity instance.
+        ///<param name="categoryId"> The specific Category I want returned.
+        public static Category GetCategory(int categoryId)
+        {
+            using (Context context = GetContext())
+            {
+                return context.Categories
+                    .Where(c => c.Id == categoryId)
+                    .SingleOrDefault();
+            }
+        }
     }
 }
