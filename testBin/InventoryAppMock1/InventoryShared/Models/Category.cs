@@ -15,8 +15,11 @@ namespace InventoryShared.Models
         }
 
         public int Id { get; set; }
+        //A basic description of the catagory.
         [StringLength(50)]
         public string Info { get; set; }
+        //A reference to what the catagory is.
+        [StringLength(20)]
         public string Ref { get; set; }
 
         public ICollection<Product> Products { get; set; }
