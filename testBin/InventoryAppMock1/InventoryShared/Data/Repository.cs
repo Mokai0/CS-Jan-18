@@ -116,5 +116,29 @@ namespace InventoryShared.Data
                     .SingleOrDefault();
             }
         }
+
+        //<summary> Adds a product.
+        //<returns> Nothing.
+        ///<param name="product"> The Product entity instance to add.
+        public static void AddProduct(Product product)
+        {
+            //TODO
+        }
+
+        //<summary> Updates a product.
+        //<returns> Nothing.
+        ///<param name="product"> The Product entity instance to update.
+        public static void UpdateProduct(Product product)
+        {
+            //TODO
+        }
+
+        //<summary> Deletes a product.
+        //<returns> Nothing.
+        ///<param name="productId"> The product Id to delete.
+        public static void DeleteProduct(int productId)
+        {
+            //TODO
+        }
     }
 }
