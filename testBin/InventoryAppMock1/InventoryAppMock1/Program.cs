@@ -18,26 +18,39 @@ namespace InventoryAppMock1
             {
                 context.Database.Log = (message) => Debug.WriteLine(message);
 
-                var products = context.Products
-                    .Include(p => p.Brand)
-                    .Include(p => p.Category)
-                    //.Where(p => p.ProductName.Contains("beans"))
-                    //.Where(p => p.Category.Ref == "Can" || p.Brand.Name == "Ziyad")
-                    .OrderBy(p => p.Quantity)
-                    .ThenBy(p => p.Category)
-                    .ToList();
+                var productId = 1;
 
-                foreach (var product in products)
-                {
-                    Console.WriteLine(product.ItemInfo);
-                }
+                //var product1 = context.Products.Find(productId);
+                //var product2 = context.Products.Find(productId);
+
+                var product = context.Products
+                    //.Where(p => p.Id == productId)
+                    //.SingleOrDefault();
+                    //Same as this:
+                    .SingleOrDefault(p => p.Id == productId);
+
+
+
+                //var products = context.Products
+                //    .Include(p => p.Brand)
+                //    .Include(p => p.Category)
+                //    //.Where(p => p.ProductName.Contains("beans"))
+                //    //.Where(p => p.Category.Ref == "Can" || p.Brand.Name == "Ziyad")
+                //    .OrderBy(p => p.Quantity)
+                //    .ThenBy(p => p.Category)
+                //    .ToList();
+
+                //foreach (var product in products)
+                //{
+                //    Console.WriteLine(product.ItemInfo);
+                //}
 
 
                 //Query using Linq
                 //var productsQuery = from p in context.Products select p;
                 //var products = productsQuery.ToList();
 
-                Console.WriteLine("# of products: {0}", products.Count);
+                //Console.WriteLine("# of products: {0}", products.Count);
 
                 //var products = context.Products
                 //    //These are needed because they are foreign key properties
