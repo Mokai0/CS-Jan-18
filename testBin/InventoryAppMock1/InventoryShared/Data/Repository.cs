@@ -122,7 +122,11 @@ namespace InventoryShared.Data
         ///<param name="product"> The Product entity instance to add.
         public static void AddProduct(Product product)
         {
-            //TODO
+            using (Context context = GetContext())
+            {
+                context.Products.Add(product);
+                context.SaveChanges();
+            }
         }
 
         //<summary> Updates a product.

@@ -1,5 +1,7 @@
 ﻿using InventoryShared;
 using InventoryShared.Models;
+using InventoryShared.Data;
+using InventoryAppMock1.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,59 +14,69 @@ namespace InventoryAppMock1
 {
     class Program
     {
-        static void Main(string[] args)
+        // These are the various commands that can be performed 
+        // in the app. Each command must have a unique string value.
+        const string CommandListProducts = "l";
+        const string CommandListProduct = "i";
+        const string CommandListProductProperties = "p";
+        const string CommandAddProduct = "a";
+        const string CommandUpdateProduct = "u";
+        const string CommandDeleteProduct = "d";
+        const string CommandSave = "s";
+        const string CommandCancel = "c";
+        const string CommandQuit = "q";
+
+        // A collection of the product's editable properties.
+        // This collection of property names needs to match the list of the properties that appear in the product.ItemInfo property.
+        readonly static List<string> EditableProperties = new List<string>()
         {
-            using (var context = new Context())
+            "BrandId",
+            "CategoryId",
+            "ProductName",
+            "Quantity",
+            "ExpirationDate"
+        };
+
+        //This is what runs when the app is launched:
+        static void Main(string[] args) 
+        {
+            string command = CommandListProducts;
+            IList<int> productIds = null;
+
+            //If the current command doesn't equal the "Quit" command then evaluate and process the command.
+            while (command != CommandQuit)
             {
-                context.Database.Log = (message) => Debug.WriteLine(message);
-
-                var productId = 1;
-
-                //var product1 = context.Products.Find(productId);
-                //var product2 = context.Products.Find(productId);
-
-                var product = context.Products
-                    //.Where(p => p.Id == productId)
-                    //.SingleOrDefault();
-                    //Same as this:
-                    .SingleOrDefault(p => p.Id == productId);
-
-
-
-                //var products = context.Products
-                //    .Include(p => p.Brand)
-                //    .Include(p => p.Category)
-                //    //.Where(p => p.ProductName.Contains("beans"))
-                //    //.Where(p => p.Category.Ref == "Can" || p.Brand.Name == "Ziyad")
-                //    .OrderBy(p => p.Quantity)
-                //    .ThenBy(p => p.Category)
-                //    .ToList();
-
-                //foreach (var product in products)
-                //{
-                //    Console.WriteLine(product.ItemInfo);
-                //}
-
-
-                //Query using Linq
-                //var productsQuery = from p in context.Products select p;
-                //var products = productsQuery.ToList();
-
-                //Console.WriteLine("# of products: {0}", products.Count);
-
-                //var products = context.Products
-                //    //These are needed because they are foreign key properties
-                //    .Include(p => p.Brand)
-                //    .Include(p => p.Category)
-                //    .ToList();
-
-                //foreach (var product in products)
-                //{
-                //    Console.WriteLine(product.ItemInfo);
-                //}
-
-                Console.ReadLine();
+                switch (command)
+                {
+                    case CommandListProducts:
+                        productIds = ListProducts();
+                        break;
+                }
             }
+        }
+
+        //<summary> Retrieves the products from the database and lists them
+        //<returns> A collection of the product Id's in the same order as the products were listed to facilitate selecting a product by line number
+        private static IList<int> ListProducts()
+        {
+            var productIds = new List<int>();
+            IList<Product> products = Repository.GetProducts();
+
+            ConsoleHelper.ClearOutput();
+            ConsoleHelper.OutputLine("Inventory");
+
+            ConsoleHelper.OutputBlankLine();
+
+            foreach (Product product in products)
+            {
+                productIds.Add(product.Id);
+
+                ConsoleHelper.OutputLine("{0}) {1}",
+                    products.IndexOf(product) + 1,
+                    product.ItemInfo);
+            }
+
+            return productIds;
         }
     }
 }
