@@ -55,19 +55,63 @@ namespace InventoryAppMock1
                         AddProduct();
                         command = CommandListProducts;
                         continue;
-                    //default:
-                    //    if (AttemptDisplayProduct(command, productIds))
-                    //    {
-                    //        command = CommandListProducts;
-                    //        continue;
-                    //    }
-                    //    else
-                    //    {
-                    //        ConsoleHelper.OutputLine("Sorry, wrong command.");
-                    //    }
+                    default:
+                        if (AttemptDisplayProduct(command, productIds))
+                        {
+                            command = CommandListProducts;
+                            continue;
+                        }
+                        else
+                        {
+                            ConsoleHelper.OutputLine("Sorry, wrong command.");
+                        }
                         break;
                 }
+
+                //List of the available commands:
+                ConsoleHelper.OutputBlankLine();
+                ConsoleHelper.Output("Commands: ");
+                int productCount = Repository.GetProductCount();
+                if (productCount > 0)
+                {
+                    ConsoleHelper.Output("Enter a Number 1-{0}, ", productCount);
+                }
+                ConsoleHelper.OutputLine("A - Add, Q - Quit", false);
+
+                command = ConsoleHelper.ReadInput("Enter a Command: ", true);
             }
+        }
+
+        //<summary> Attempts parse the provided command as a line number, returns product.ItemInfo for the referenced product if successful.
+        //<returns> Returns 'true' if the product selection was successful and 'false' otherwise.
+        ///<param name="command"> The line number command selected.
+        ///<paramref name="productIds"/> The selected product's Id.
+        private static bool AttemptDisplayProduct(string command, IList<int> productIds)
+        {
+            var successful = false;
+            int? productId = null;
+
+            //Only attempt to parse the command to a line number if we have a collection of product Ids available.
+            if (productIds != null)
+            {
+                //Attempt to parse the command to a line number:
+                int lineNumber = 0;
+                int.TryParse(command, out lineNumber);
+
+                //If the number is within range then get that product Id.
+                if (lineNumber > 0 && lineNumber <= productIds.Count)
+                {
+                    productId = productIds[lineNumber-1];
+                    successful = true;
+                }
+            }
+
+            //if we have a product Id then display the product.ItemInfo.
+            if (productId != null)
+            {
+                DisplayProduct(productId.Value);
+            }
+            return successful;
         }
 
         //<summary> Promts for product values to add then adds product to database.
@@ -144,7 +188,7 @@ namespace InventoryAppMock1
                 {
                     if (lineNumber > 0 && lineNumber < categories.Count)
                     {
-                        categoryId = categories[lineNumber--].Id;
+                        categoryId = categories[lineNumber-1].Id;
                     }
                     else
                     {
@@ -204,6 +248,208 @@ namespace InventoryAppMock1
             }
 
             return productIds;
+        }
+
+        //<summary> Displays the product's information for the provided productId.
+        //<returns> Null.
+        ///<param name="productId"> The selected product's Id.
+        private static void DisplayProduct(int productId)
+        {
+            string command = CommandListProduct;
+
+            //If the current command isn't "Cancel" then evaluate:
+            while (command != CommandCancel)
+            {
+                switch (command)
+                {
+                    case CommandListProduct:
+                        ListProduct(productId);
+                        break;
+                    case CommandUpdateProduct:
+                        UpdateProduct(productId);
+                        command = CommandListProduct;
+                        continue;
+                    case CommandDeleteProduct:
+                        if (DeleteProduct(productId))
+                        {
+                            command = CommandCancel;
+                        }
+                        else
+                        {
+                            command = CommandListProduct;
+                        }
+                        continue;
+                    default:
+                        ConsoleHelper.OutputLine("Please try a valid response.");
+                        break;
+                }
+
+                //List the available commands:
+                ConsoleHelper.OutputBlankLine();
+                ConsoleHelper.Output("Commands: ");
+                ConsoleHelper.OutputLine("U - Update, D - Delete, C - Cancel", false);
+
+                //Get the next command from the user.
+                command = ConsoleHelper.ReadInput("Enter a command: ", true);
+            }
+        }
+
+        //<summary> First checks that the user wants to delete the selected product, then confirms it before deleting.
+        //<returns> "true" if the product was deleted, "false" otherwise.
+        ///<param name="productId"> The product's Id.
+        private static bool DeleteProduct(int productId)
+        {
+            var successful = false;
+            //The confirmation prompt:
+            string input = ConsoleHelper.ReadInput("Are you sure you want to delete this product? (Y/N)", true);
+
+            //If "y":
+            if (input == "y")
+            {
+                Repository.DeleteProduct(productId);
+                successful = true;
+            }
+            return successful;
+        }
+
+        //<summary> Lists the information for the product selected by Id.
+        //<returns> Null.
+        ///<param name="productId"> The selected product's Id.
+        private static void ListProduct(int productId)
+        {
+            Product product = Repository.GetProduct(productId);
+
+            ConsoleHelper.ClearOutput();
+            ConsoleHelper.OutputLine(product.Brand.Name +  " " + product.ProductName + " information:");
+            ConsoleHelper.OutputBlankLine();
+
+            //Category
+            ConsoleHelper.OutputLine("This Item is found in the {0} isle", product.Category.Ref);
+            ConsoleHelper.OutputBlankLine();
+
+            //Quantity
+            ConsoleHelper.OutputLine("There are {0} cases of this item currently in stock", product.Quantity);
+            ConsoleHelper.OutputBlankLine();
+            
+            //Expiration - remember this is gravy
+            //if (!string.IsNullOrWhiteSpace(product.ExpirationDate))
+            //{
+            //    ConsoleHelper.OutputLine("Expires on: {0}", product.ExpirationDate.ToShortDateString());
+            //}
+        }
+
+        //<summary> Lists the editable properties for the selected product.
+        //<returns> Null.
+        ///<param name="productId"> The selected product's Id.
+        private static void UpdateProduct(int productId)
+        {
+            Product product = Repository.GetProduct(productId);
+            string command = CommandListProductProperties;
+
+            //If the current command isn't "Cancel" then keep going:
+            while (command != CommandCancel)
+            {
+                switch (command)
+                {
+                    case CommandListProductProperties:
+                        ListProductProperties(product);
+                        break;
+                    case CommandSave:
+                        Repository.UpdateProduct(product);
+                        command = CommandCancel;
+                        continue;
+                    default:
+                        if (AttemptUpdateProductProperty(command, product))
+                        {
+                            command = CommandListProductProperties;
+                            continue;
+                        }
+                        else
+                        {
+                            ConsoleHelper.OutputLine("Try again.");
+                        }
+                        break;
+                }
+
+                //List the available commands:
+                ConsoleHelper.OutputBlankLine();
+                ConsoleHelper.Output("Commands: ");
+                if (EditableProperties.Count > 0)
+                {
+                    ConsoleHelper.Output("Enter a Number 1-{0}, ", EditableProperties.Count);
+                }
+                ConsoleHelper.OutputLine("S - Save, C - Cancel", false);
+
+                //Get the next command from the user:
+                command = ConsoleHelper.ReadInput("Enter a Command: ", true);
+            }
+            ConsoleHelper.ClearOutput();
+        }
+
+        //<summary> Attempts to parse the provided command, calls the appropriate user input method if successful.
+        //<returns> "true" if the product property was updated successfully, otherwise "false".
+        ///<param name="command"> The selected command.
+        ///<paramref name="product"> The product to update.
+        private static bool AttemptUpdateProductProperty(string command, Product product)
+        {
+            var successful = false;
+            //Attempt to parse the command to a line number, the implementation of this method already handles a failure in parsing.
+            int lineNumber = 0;
+            int.TryParse(command, out lineNumber);
+
+            //If line number is within range then get the product Id:
+            if (lineNumber > 0 && lineNumber <= EditableProperties.Count)
+            {
+                string propertyName = EditableProperties[lineNumber-1];
+                switch (propertyName)
+                {
+                    case "BrandId":
+                        product.Brand.Id = GetBrandId();
+                        product.Brand = Repository.GetBrand(product.Brand.Id);
+                        break;
+                    case "CategoryId":
+                        product.Category.Id = GetCategoryId();
+                        product.Category = Repository.GetCategory(product.Category.Id);
+                        break;
+                    case "ProductName":
+                        product.ProductName = GetProductName();
+                        break;
+                    case "Quantity":
+                        product.Quantity = GetQuantity();
+                        break;
+                        //gravy
+                    //case "ExpirationDate":
+                    //    product.ExpirationDate = GetExpirationDate();
+                    //    break;
+                    default:
+                        break;
+                }
+                successful = true;
+            }
+            return successful;
+        }
+
+        //<summary> Lists the editable product properties.
+        //<returns> Null.
+        ///<param name="product"> The prodcut whose properties to list.
+        private static void ListProductProperties(Product product)
+        {
+            ConsoleHelper.ClearOutput();
+            ConsoleHelper.OutputLine("Update: " + product.ItemTag);
+
+            //MUST match the collection of editable properties declared before Main() at top of this file:
+            ConsoleHelper.OutputBlankLine();
+            ConsoleHelper.OutputLine("1) Brand: {0}", product.Brand.Name);
+            ConsoleHelper.OutputBlankLine();
+            ConsoleHelper.OutputLine("2) Category: {0}", product.Category.Info);
+            ConsoleHelper.OutputBlankLine();
+            ConsoleHelper.OutputLine("3) Product Name: {0}", product.ProductName);
+            ConsoleHelper.OutputBlankLine();
+            ConsoleHelper.OutputLine("4) Quantity: {0}", product.Quantity);
+            //Remember - gravy
+            //ConsoleHelper.OutputBlankLine();
+            //ConsoleHelper.OutputLine("5) Expiration Date: {0}", product.ExpirationDate);
+
         }
     }
 }

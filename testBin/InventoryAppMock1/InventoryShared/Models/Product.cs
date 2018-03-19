@@ -43,5 +43,13 @@ namespace InventoryShared.Models
                 return $"{Brand.Name} {ProductName} | {Category?.Info} | {Quantity} in stock";
             }
         }
+
+        public string ItemTag
+        {
+            get
+            {
+                return $"{Brand.Name} {ProductName}";
+            }
+        }
     }
 }
