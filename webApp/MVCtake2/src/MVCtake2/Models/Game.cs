@@ -18,7 +18,7 @@ namespace MVCtake2.Models
         {
             get
             {
-                return Title + "|" + Genre;
+                return Title + " | " + Genre;
             }
         }
 
