@@ -21,7 +21,7 @@ namespace InventoryShared.Models
         public DateTime? ExpirationDate { get; set; }
         public int MyProperty { get; set; }
 
-        [Required]
+        //[Required]
         public Brand Brand { get; set; }
         public Category Category { get; set; }
         //public ICollection<Category> Categorys { get; set; }
