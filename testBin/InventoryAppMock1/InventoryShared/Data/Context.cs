@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InventoryShared
+namespace InventoryShared.Data
 {
     public class Context : DbContext
     {
@@ -15,13 +15,12 @@ namespace InventoryShared
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Category> Categories { get; set; }
         
-        public Context()
-        {
-            Database.SetInitializer(new
-            //DropCreateDatabaseAlways<Context>());
-            //Will now be using the custom made initializer
-            DatabaseInitializer());
-        }
+        //public Context()
+        //{
+        //    Database.SetInitializer(new DatabaseInitializer());
+        //    //DropCreateDatabaseAlways<Context>());
+        //    //Will now be using the custom made initializer
+        //} Check App.config
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

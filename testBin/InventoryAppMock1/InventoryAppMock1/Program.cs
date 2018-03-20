@@ -38,7 +38,7 @@ namespace InventoryAppMock1
         };
 
         //This is what runs when the app is launched:
-        static void Main(string[] args) 
+        static void Main(string[] args)
         {
             string command = CommandListProducts;
             IList<int> productIds = null;
@@ -101,7 +101,7 @@ namespace InventoryAppMock1
                 //If the number is within range then get that product Id.
                 if (lineNumber > 0 && lineNumber <= productIds.Count)
                 {
-                    productId = productIds[lineNumber-1];
+                    productId = productIds[lineNumber - 1];
                     successful = true;
                 }
             }
@@ -129,6 +129,9 @@ namespace InventoryAppMock1
             product.Quantity = GetQuantity();
             //product.ExpirationDate = GetExpirationDate();
             //This last one will be gravy.
+
+            //Add the product to the database:
+            Repository.AddProduct(product);
         }
 
         //<summary> Gets the needed Brand Id based on user input.
@@ -188,7 +191,7 @@ namespace InventoryAppMock1
                 {
                     if (lineNumber > 0 && lineNumber < categories.Count)
                     {
-                        categoryId = categories[lineNumber-1].Id;
+                        categoryId = categories[lineNumber - 1].Id;
                     }
                     else
                     {
@@ -243,8 +246,8 @@ namespace InventoryAppMock1
                 productIds.Add(product.Id);
 
                 ConsoleHelper.OutputLine("{0}) {1}",
-                    products.IndexOf(product) + 1,
-                    product.ItemInfo);
+                products.IndexOf(product) + 1,
+                product.ItemInfo);
             }
 
             return productIds;
@@ -320,7 +323,7 @@ namespace InventoryAppMock1
             Product product = Repository.GetProduct(productId);
 
             ConsoleHelper.ClearOutput();
-            ConsoleHelper.OutputLine(product.Brand.Name +  " " + product.ProductName + " information:");
+            ConsoleHelper.OutputLine(product.Brand.Name + " " + product.ProductName + " information:");
             ConsoleHelper.OutputBlankLine();
 
             //Category
@@ -330,7 +333,7 @@ namespace InventoryAppMock1
             //Quantity
             ConsoleHelper.OutputLine("There are {0} cases of this item currently in stock", product.Quantity);
             ConsoleHelper.OutputBlankLine();
-            
+
             //Expiration - remember this is gravy
             //if (!string.IsNullOrWhiteSpace(product.ExpirationDate))
             //{
@@ -400,7 +403,7 @@ namespace InventoryAppMock1
             //If line number is within range then get the product Id:
             if (lineNumber > 0 && lineNumber <= EditableProperties.Count)
             {
-                string propertyName = EditableProperties[lineNumber-1];
+                string propertyName = EditableProperties[lineNumber - 1];
                 switch (propertyName)
                 {
                     case "BrandId":
@@ -417,7 +420,7 @@ namespace InventoryAppMock1
                     case "Quantity":
                         product.Quantity = GetQuantity();
                         break;
-                        //gravy
+                    //gravy
                     //case "ExpirationDate":
                     //    product.ExpirationDate = GetExpirationDate();
                     //    break;
