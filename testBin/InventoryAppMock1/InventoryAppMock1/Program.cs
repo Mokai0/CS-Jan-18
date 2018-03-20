@@ -27,7 +27,7 @@ namespace InventoryAppMock1
         const string CommandQuit = "q";
 
         // A collection of the product's editable properties.
-        // This collection of property names needs to match the list of the properties that appear in the product.ItemInfo property.
+        // This collection of property names needs to match the list of the properties that appear in the products list page.
         readonly static List<string> EditableProperties = new List<string>()
         {
             "BrandId",
@@ -82,7 +82,7 @@ namespace InventoryAppMock1
             }
         }
 
-        //<summary> Attempts parse the provided command as a line number, returns product.ItemInfo for the referenced product if successful.
+        //<summary> Attempts parse the provided command as a line number, returns product.ItemTag for the referenced product if successful.
         //<returns> Returns 'true' if the product selection was successful and 'false' otherwise.
         ///<param name="command"> The line number command selected.
         ///<paramref name="productIds"/> The selected product's Id.
@@ -106,7 +106,7 @@ namespace InventoryAppMock1
                 }
             }
 
-            //if we have a product Id then display the product.ItemInfo.
+            //if we have a product Id then display the product.ItemTag.
             if (productId != null)
             {
                 DisplayProduct(productId.Value);
@@ -247,7 +247,8 @@ namespace InventoryAppMock1
 
                 ConsoleHelper.OutputLine("{0}) {1}",
                 products.IndexOf(product) + 1,
-                product.ItemInfo);
+                product.ItemTag);
+                //product.ItemInfo);
             }
 
             return productIds;

@@ -31,18 +31,18 @@ namespace InventoryShared.Models
         /// <summary>
         /// Text Display functions follow
         /// </summary>
-        public string ItemInfo
-        {
-            get
-            {
-                if (ExpirationDate != null)
-                {
-                    return $"{Brand?.Name} {ProductName} | {Category?.Info} | {Quantity} in stock | Expires on {ExpirationDate}";
-                }
+        //public string ItemInfo
+        //{
+        //    get
+        //    {
+        //        if (ExpirationDate != null)
+        //        {
+        //            return $"{Brand?.Name} {ProductName} | {Category?.Info} | {Quantity} in stock | Expires on {ExpirationDate}";
+        //        }
 
-                return $"{Brand?.Name} {ProductName} | {Category?.Info} | {Quantity} in stock";
-            }
-        }
+        //        return $"{Brand?.Name} {ProductName} | {Category?.Info} | {Quantity} in stock";
+        //    }
+        //}
 
         public string ItemTag
         {
