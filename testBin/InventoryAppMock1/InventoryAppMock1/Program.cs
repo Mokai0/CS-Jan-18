@@ -128,7 +128,7 @@ namespace InventoryAppMock1
             product.ProductName = GetProductName();
             product.Quantity = GetQuantity();
             //product.ExpirationDate = GetExpirationDate();
-            //This last one will be gravy.
+            //This last one will be #gravy.
 
             //Add the product to the database:
             Repository.AddProduct(product);
@@ -160,7 +160,7 @@ namespace InventoryAppMock1
                     {
                         brandId = brands[lineNumber - 1].Id;
                     }
-                    else
+                    else //Add a stipulation to create another brand #gravy
                     {
                         ConsoleHelper.OutputLine("\"" + lineNumber + "\" is not a valid choice. Please try again");
                     }
@@ -341,7 +341,7 @@ namespace InventoryAppMock1
             ConsoleHelper.OutputLine("There are {0} cases of this item currently in stock", product.Quantity);
             ConsoleHelper.OutputBlankLine();
 
-            //Expiration - remember this is gravy
+            //Expiration - remember this is #gravy
             //if (!string.IsNullOrWhiteSpace(product.ExpirationDate))
             //{
             //    ConsoleHelper.OutputLine("Expires on: {0}", product.ExpirationDate.ToShortDateString());
@@ -427,7 +427,7 @@ namespace InventoryAppMock1
                     case "Quantity":
                         product.Quantity = GetQuantity();
                         break;
-                    //gravy
+                    //#gravy
                     //case "ExpirationDate":
                     //    product.ExpirationDate = GetExpirationDate();
                     //    break;
@@ -456,7 +456,7 @@ namespace InventoryAppMock1
             ConsoleHelper.OutputLine("3) Product Name: {0}", product.ProductName);
             ConsoleHelper.OutputBlankLine();
             ConsoleHelper.OutputLine("4) Quantity: {0}", product.Quantity);
-            //Remember - gravy
+            //Remember - #gravy
             //ConsoleHelper.OutputBlankLine();
             //ConsoleHelper.OutputLine("5) Expiration Date: {0}", product.ExpirationDate);
 

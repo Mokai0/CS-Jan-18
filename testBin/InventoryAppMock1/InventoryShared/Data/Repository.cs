@@ -145,7 +145,29 @@ namespace InventoryShared.Data
         ///<param name="product"> The Product entity instance to update.
         public static void UpdateProduct(Product product)
         {
-            //TODO
+            using (Context context = GetContext())
+            {
+                context.Products.Attach(product);
+                var pUpdateEntry = context.Entry(product);
+                pUpdateEntry.State = EntityState.Modified;
+                //This will ensure that the only value to change is the Quantity:  #gravy
+                pUpdateEntry.Property("BrandId").IsModified = false;
+                pUpdateEntry.Property("CategoryId").IsModified = false;
+                pUpdateEntry.Property("ProductName").IsModified = false;
+
+                //This is good but it makes multiple sql queries
+                //Product productToUpdate = context.Products.Find(product.Id);
+                //context.Entry(productToUpdate).CurrentValues.SetValues(product);
+
+                //This is too tideous
+                //productToUpdate.BrandId = product.BrandId;
+                //productToUpdate.CategoryId = product.CategoryId;
+                //productToUpdate.ProductName = product.ProductName;
+                //productToUpdate.Quantity = product.Quantity;
+                //productToUpdate.ExpirationDate = product.ExpirationDate;
+
+                context.SaveChanges();
+            }
         }
 
         //<summary> Deletes a product.
