@@ -206,7 +206,13 @@ namespace InventoryAppMock1
         //<returns> The user's input as a string and passes it into the product.ProductName.
         private static string GetProductName()
         {
-            return ConsoleHelper.ReadInput("What is the product's name: ");
+            //ConsoleHelper.Output();
+            string pName = ConsoleHelper.ReadInput("What is the product's name: ");
+            while (string.IsNullOrWhiteSpace(pName))
+            {
+                pName = ConsoleHelper.ReadInput("There needs to be a name for the product: ");
+            }
+            return pName;
         }
 
         //<summary> Takes the user's input as the quantity of the product currently in stock.

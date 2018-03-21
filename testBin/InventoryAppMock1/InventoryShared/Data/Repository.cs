@@ -125,6 +125,17 @@ namespace InventoryShared.Data
             using (Context context = GetContext())
             {
                 context.Products.Add(product);
+
+                if (product.Brand != null && product.Brand.Id > 0)
+                {
+                    context.Entry(product.Brand).State = EntityState.Unchanged;
+                }
+
+                if (product.Category != null && product.Category.Id > 0)
+                {
+                    context.Entry(product.Category).State = EntityState.Unchanged;
+                }
+
                 context.SaveChanges();
             }
         }
