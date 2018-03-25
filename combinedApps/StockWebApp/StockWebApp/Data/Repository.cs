@@ -124,6 +124,14 @@ namespace StockWebApp.Data
             using (Context context = GetContext())
             {
                 context.Products.Add(product);
+                if (product.Brand !=null && product.Brand.Id > 0)
+                {
+                    context.Entry(product.Brand).State = EntityState.Unchanged;
+                }
+                if (product.Category != null && product.Category.Id > 0)
+                {
+                    context.Entry(product.Category).State = EntityState.Unchanged;
+                }
                 context.SaveChanges();
             }
         }
@@ -133,7 +141,18 @@ namespace StockWebApp.Data
         ///<param name="product"> The Product entity instance to update.
         public static void UpdateProduct(Product product)
         {
-            //TODO
+            using (Context context = GetContext())
+            {
+                context.Products.Attach(product);
+                var pUpdateEntry = context.Entry(product);
+                pUpdateEntry.State = EntityState.Modified;
+                //This will ensure that the only value to change is the Quantity:  #gravy
+                pUpdateEntry.Property("BrandId").IsModified = false;
+                pUpdateEntry.Property("CategoryId").IsModified = false;
+                pUpdateEntry.Property("ProductName").IsModified = false;
+                //I only want the quantity of the product changed
+                context.SaveChanges();
+            }
         }
 
         //<summary> Deletes a product.
@@ -141,7 +160,13 @@ namespace StockWebApp.Data
         ///<param name="productId"> The product Id to delete.
         public static void DeleteProduct(int productId)
         {
-            //TODO
+            using (Context context = GetContext())
+            {
+                var pToDelete = new Product() { Id = productId };
+                context.Entry(pToDelete).State = EntityState.Deleted;
+
+                context.SaveChanges();
+            }
         }
     }
 }

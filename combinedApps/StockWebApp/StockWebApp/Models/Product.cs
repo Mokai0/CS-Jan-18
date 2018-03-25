@@ -17,7 +17,6 @@ namespace StockWebApp.Models
         public DateTime? ExpirationDate { get; set; }
         public int MyProperty { get; set; }
 
-        [Required]
         public Brand Brand { get; set; }
         public Category Category { get; set; }
         //public ICollection<Category> Categorys { get; set; }
@@ -27,19 +26,6 @@ namespace StockWebApp.Models
         /// <summary>
         /// Text Display functions follow
         /// </summary>
-        public string ItemInfo
-        {
-            get
-            {
-                if (ExpirationDate != null)
-                {
-                    return $"{Brand.Name} {ProductName} | {Category?.Info} | {Quantity} in stock | Expires on {ExpirationDate}";
-                }
-
-                return $"{Brand.Name} {ProductName} | {Category?.Info} | {Quantity} in stock";
-            }
-        }
-
         public string ItemTag
         {
             get
