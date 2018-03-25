@@ -12,7 +12,8 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Product</h4>
+        <h4>Change this so that it displays the different properties of each item but
+        will only allow the changing of the Quantity and ExpirationDate value.</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
