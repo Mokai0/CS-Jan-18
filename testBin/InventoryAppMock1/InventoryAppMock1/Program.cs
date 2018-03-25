@@ -448,12 +448,12 @@ namespace InventoryAppMock1
             ConsoleHelper.OutputLine("Update: " + product.ItemTag);
 
             //MUST match the collection of editable properties declared before Main() at top of this file:
-            ConsoleHelper.OutputBlankLine();
-            ConsoleHelper.OutputLine("1) Brand: {0}", product.Brand.Name);
-            ConsoleHelper.OutputBlankLine();
-            ConsoleHelper.OutputLine("2) Category: {0}", product.Category.Info);
-            ConsoleHelper.OutputBlankLine();
-            ConsoleHelper.OutputLine("3) Product Name: {0}", product.ProductName);
+            //ConsoleHelper.OutputBlankLine();
+            //ConsoleHelper.OutputLine("1) Brand: {0}", product.Brand.Name);
+            //ConsoleHelper.OutputBlankLine();
+            //ConsoleHelper.OutputLine("2) Category: {0}", product.Category.Info);
+            //ConsoleHelper.OutputBlankLine();
+            //ConsoleHelper.OutputLine("3) Product Name: {0}", product.ProductName);
             ConsoleHelper.OutputBlankLine();
             ConsoleHelper.OutputLine("4) Quantity: {0}", product.Quantity);
             //Remember - #gravy

@@ -155,17 +155,6 @@ namespace InventoryShared.Data
                 pUpdateEntry.Property("CategoryId").IsModified = false;
                 pUpdateEntry.Property("ProductName").IsModified = false;
 
-                //This is good but it makes multiple sql queries
-                //Product productToUpdate = context.Products.Find(product.Id);
-                //context.Entry(productToUpdate).CurrentValues.SetValues(product);
-
-                //This is too tideous
-                //productToUpdate.BrandId = product.BrandId;
-                //productToUpdate.CategoryId = product.CategoryId;
-                //productToUpdate.ProductName = product.ProductName;
-                //productToUpdate.Quantity = product.Quantity;
-                //productToUpdate.ExpirationDate = product.ExpirationDate;
-
                 context.SaveChanges();
             }
         }
@@ -175,7 +164,13 @@ namespace InventoryShared.Data
         ///<param name="productId"> The product Id to delete.
         public static void DeleteProduct(int productId)
         {
-            //TODO
+            using (Context context = GetContext())
+            {
+                var pToDelete = new Product() { Id = productId };
+                context.Entry(pToDelete).State = EntityState.Deleted;
+
+                context.SaveChanges();
+            }
         }
     }
 }

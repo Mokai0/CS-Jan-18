@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryShared", "Inventor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryWebMock1", "InventoryWebMock1\InventoryWebMock1.csproj", "{CCDADB1F-71EE-4070-BE52-A101A4862447}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryWebMock2", "InventoryWebMock2\InventoryWebMock2.csproj", "{9C585FCF-39FB-4FCA-9FA2-F1684478FD63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{CCDADB1F-71EE-4070-BE52-A101A4862447}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCDADB1F-71EE-4070-BE52-A101A4862447}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCDADB1F-71EE-4070-BE52-A101A4862447}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C585FCF-39FB-4FCA-9FA2-F1684478FD63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C585FCF-39FB-4FCA-9FA2-F1684478FD63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C585FCF-39FB-4FCA-9FA2-F1684478FD63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C585FCF-39FB-4FCA-9FA2-F1684478FD63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
