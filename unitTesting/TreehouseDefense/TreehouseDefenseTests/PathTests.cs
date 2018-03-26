@@ -23,18 +23,17 @@ namespace TreehouseDefense.Tests
         }
 
         [Fact]
-        public void MapLoactionIs_OnPath()
+        public void MapLoactionIsOnPath()
         {
             var target = _path3;
             Assert.True(target.IsOnPath(new MapLocation(0, 1, _map3x3)));
         }
 
         [Fact]
-        public void MapLoactionIs_NotOnPath()
+        public void MapLoactionIsNotOnPath()
         {
             var target = _path3;
-
-            Assert.True(target.IsOnPath(new MapLocation(0, 0, _map3x3)));
+            Assert.False(target.IsOnPath(new MapLocation(0, 0, _map3x3)));
         }
     }
 }

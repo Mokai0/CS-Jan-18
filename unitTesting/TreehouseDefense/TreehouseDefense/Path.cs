@@ -13,7 +13,7 @@ namespace TreehouseDefense
 
         public bool IsOnPath(MapLocation mapLocation)
         {
-            throw new NotImplementedException();
+            return Array.IndexOf(pathLocations, mapLocation) >= 0;
         }
     }
 }
