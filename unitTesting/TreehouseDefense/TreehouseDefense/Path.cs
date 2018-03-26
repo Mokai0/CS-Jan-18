@@ -1,19 +1,17 @@
 ﻿using System;
+using System.Linq;
 
 namespace TreehouseDefense
 {
     public class Path
     {
-        private MapLocation[] pathLocations;
+        private MapLocation[] _path;
 
         public Path(MapLocation[] pathLocations)
         {
-            this.pathLocations = pathLocations;
+            _path = pathLocations;
         }
 
-        public bool IsOnPath(MapLocation mapLocation)
-        {
-            return Array.IndexOf(pathLocations, mapLocation) >= 0;
-        }
+        public bool IsOnPath(MapLocation mapLocation) => _path.Contains(mapLocation);
     }
 }
