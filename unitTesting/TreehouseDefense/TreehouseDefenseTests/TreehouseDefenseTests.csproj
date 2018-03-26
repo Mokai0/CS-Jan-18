@@ -63,6 +63,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="MapLocationTests.cs" />
+    <Compile Include="PathTests.cs" />
     <Compile Include="PointTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
